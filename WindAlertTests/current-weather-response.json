@@ -1,0 +1,40 @@
+{
+    "base": "cmc stations",
+    "clouds": {
+        "all": 0
+    },
+    "cod": 200,
+    "coord": {
+        "lat": 51.51,
+        "lon": -0.13
+    },
+    "dt": 1395316279,
+    "id": 2643743,
+    "main": {
+        "humidity": 76,
+        "pressure": 1009,
+        "temp": 286.41,
+        "temp_max": 288.71,
+        "temp_min": 284.82
+    },
+    "name": "London",
+    "sys": {
+        "country": "GB",
+        "message": 0.0282,
+        "sunrise": 1395295306,
+        "sunset": 1395339235
+    },
+    "weather": [
+        {
+            "description": "Sky is Clear",
+            "icon": "01d",
+            "id": 800,
+            "main": "Clear"
+        }
+    ],
+    "wind": {
+        "deg": 224,
+        "gust": 6.68,
+        "speed": 3.6
+    }
+}

@@ -1,0 +1,36 @@
+//
+//  OpenWeatherFetcher.h
+//  WindAlert
+//
+//  Created by Josh on 20/03/2014.
+//  Copyright (c) 2014 Josh Heald. All rights reserved.
+//
+
+/*
+ Provides interfaces to OpenWeatherMap API
+ 
+ 1: searching for cities
+     a: by city name - return 5 cities maximum
+     b: by lat/long - return 10 nearest cities
+     returns: NSArray of NSDictionaries, containing Name, Country, ID, Lat, Long
+ 
+ 2: Current wind data by city ID
+     returns: NSDictionary containing Speed, Direction (cardinal)
+ 
+ 3: Forecast wind data by city ID
+     a: for a day overall
+     returns: NSDictionary containing Speed, Direction (cardinal)
+     b: for every 3 hours within a day (after now, if today)
+     returns: NSArray of NSDictionaries containing Time, Speed, Direction (cardinal)
+ */
+
+#import <Foundation/Foundation.h>
+
+@interface OpenWeatherFetcher : NSObject
+
++ (NSArray *)citiesFoundForSearchString:(NSString *)searchString;
++ (NSDictionary *)currentWindDataForCityWithID:(NSString *)cityID;
++ (NSDictionary *)dailyForecastWindDataForCityWithID:(NSString *)cityID onDate:(NSDate *)date;
++ (NSDictionary *)threeHourlyForecastWindDataForCityWithID:(NSString *)cityID onDate:(NSDate *)date;
+
+@end

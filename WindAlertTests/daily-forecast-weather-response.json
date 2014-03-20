@@ -1,0 +1,90 @@
+{
+    "city": {
+        "coord": {
+            "lat": 51.50853,
+            "lon": -0.12574
+        },
+        "country": "GB",
+        "id": 2643743,
+        "name": "London",
+        "population": 1000000
+    },
+    "cnt": 3,
+    "cod": "200",
+    "list": [
+        {
+            "clouds": 24,
+            "deg": 206,
+            "dt": 1395316800,
+            "humidity": 79,
+            "pressure": 1012.62,
+            "rain": 1.5,
+            "speed": 10.71,
+            "temp": {
+                "day": 287.34,
+                "eve": 285.04,
+                "max": 287.34,
+                "min": 281.61,
+                "morn": 284.34,
+                "night": 281.61
+            },
+            "weather": [
+                {
+                    "description": "light rain",
+                    "icon": "10d",
+                    "id": 500,
+                    "main": "Rain"
+                }
+            ]
+        },
+        {
+            "clouds": 0,
+            "deg": 236,
+            "dt": 1395403200,
+            "humidity": 86,
+            "pressure": 1012.9,
+            "speed": 6.92,
+            "temp": {
+                "day": 283.8,
+                "eve": 282.29,
+                "max": 283.8,
+                "min": 278.58,
+                "morn": 278.58,
+                "night": 281.42
+            },
+            "weather": [
+                {
+                    "description": "sky is clear",
+                    "icon": "01d",
+                    "id": 800,
+                    "main": "Clear"
+                }
+            ]
+        },
+        {
+            "clouds": 24,
+            "deg": 223,
+            "dt": 1395489600,
+            "humidity": 84,
+            "pressure": 1002.85,
+            "speed": 7.53,
+            "temp": {
+                "day": 282.19,
+                "eve": 280.68,
+                "max": 282.19,
+                "min": 277.58,
+                "morn": 279.89,
+                "night": 277.58
+            },
+            "weather": [
+                {
+                    "description": "few clouds",
+                    "icon": "02d",
+                    "id": 801,
+                    "main": "Clouds"
+                }
+            ]
+        }
+    ],
+    "message": 0.0034
+}

@@ -1,0 +1,35 @@
+{
+    "clouds": {
+        "all": 0
+    },
+    "coord": {
+        "lat": 51.50853,
+        "lon": -0.12574
+    },
+    "dt": 1395319704,
+    "id": 2643743,
+    "main": {
+        "humidity": 45,
+        "pressure": 1006,
+        "temp": 286.66,
+        "temp_max": 288.15,
+        "temp_min": 285.37
+    },
+    "name": "London",
+    "sys": {
+        "country": "GB"
+    },
+    "weather": [
+        {
+            "description": "Sky is Clear",
+            "icon": "01d",
+            "id": 800,
+            "main": "Clear"
+        }
+    ],
+    "wind": {
+        "deg": 226,
+        "gust": 9.77,
+        "speed": 6.17
+    }
+}
