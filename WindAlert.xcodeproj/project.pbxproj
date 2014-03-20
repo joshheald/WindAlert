@@ -1,0 +1,485 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		03B62FAE18DAD8C50032590F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03B62FAD18DAD8C50032590F /* Foundation.framework */; };
+		03B62FB018DAD8C50032590F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03B62FAF18DAD8C50032590F /* CoreGraphics.framework */; };
+		03B62FB218DAD8C50032590F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03B62FB118DAD8C50032590F /* UIKit.framework */; };
+		03B62FB818DAD8C50032590F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 03B62FB618DAD8C50032590F /* InfoPlist.strings */; };
+		03B62FBA18DAD8C50032590F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B62FB918DAD8C50032590F /* main.m */; };
+		03B62FBE18DAD8C50032590F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B62FBD18DAD8C50032590F /* AppDelegate.m */; };
+		03B62FC118DAD8C50032590F /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03B62FBF18DAD8C50032590F /* Main_iPhone.storyboard */; };
+		03B62FC418DAD8C50032590F /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03B62FC218DAD8C50032590F /* Main_iPad.storyboard */; };
+		03B62FC718DAD8C50032590F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B62FC618DAD8C50032590F /* ViewController.m */; };
+		03B62FC918DAD8C50032590F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03B62FC818DAD8C50032590F /* Images.xcassets */; };
+		03B62FD018DAD8C50032590F /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03B62FCF18DAD8C50032590F /* XCTest.framework */; };
+		03B62FD118DAD8C50032590F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03B62FAD18DAD8C50032590F /* Foundation.framework */; };
+		03B62FD218DAD8C50032590F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03B62FB118DAD8C50032590F /* UIKit.framework */; };
+		03B62FDA18DAD8C50032590F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 03B62FD818DAD8C50032590F /* InfoPlist.strings */; };
+		03B62FDC18DAD8C50032590F /* WindAlertTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B62FDB18DAD8C50032590F /* WindAlertTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		03B62FD318DAD8C50032590F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 03B62FA218DAD8C50032590F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 03B62FA918DAD8C50032590F;
+			remoteInfo = WindAlert;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		03B62FAA18DAD8C50032590F /* WindAlert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WindAlert.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		03B62FAD18DAD8C50032590F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		03B62FAF18DAD8C50032590F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		03B62FB118DAD8C50032590F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		03B62FB518DAD8C50032590F /* WindAlert-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WindAlert-Info.plist"; sourceTree = "<group>"; };
+		03B62FB718DAD8C50032590F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		03B62FB918DAD8C50032590F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		03B62FBB18DAD8C50032590F /* WindAlert-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WindAlert-Prefix.pch"; sourceTree = "<group>"; };
+		03B62FBC18DAD8C50032590F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		03B62FBD18DAD8C50032590F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		03B62FC018DAD8C50032590F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		03B62FC318DAD8C50032590F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		03B62FC518DAD8C50032590F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		03B62FC618DAD8C50032590F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		03B62FC818DAD8C50032590F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		03B62FCE18DAD8C50032590F /* WindAlertTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WindAlertTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		03B62FCF18DAD8C50032590F /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		03B62FD718DAD8C50032590F /* WindAlertTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WindAlertTests-Info.plist"; sourceTree = "<group>"; };
+		03B62FD918DAD8C50032590F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		03B62FDB18DAD8C50032590F /* WindAlertTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WindAlertTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		03B62FA718DAD8C50032590F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03B62FB018DAD8C50032590F /* CoreGraphics.framework in Frameworks */,
+				03B62FB218DAD8C50032590F /* UIKit.framework in Frameworks */,
+				03B62FAE18DAD8C50032590F /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		03B62FCB18DAD8C50032590F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03B62FD018DAD8C50032590F /* XCTest.framework in Frameworks */,
+				03B62FD218DAD8C50032590F /* UIKit.framework in Frameworks */,
+				03B62FD118DAD8C50032590F /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		03B62FA118DAD8C50032590F = {
+			isa = PBXGroup;
+			children = (
+				03B62FB318DAD8C50032590F /* WindAlert */,
+				03B62FD518DAD8C50032590F /* WindAlertTests */,
+				03B62FAC18DAD8C50032590F /* Frameworks */,
+				03B62FAB18DAD8C50032590F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		03B62FAB18DAD8C50032590F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				03B62FAA18DAD8C50032590F /* WindAlert.app */,
+				03B62FCE18DAD8C50032590F /* WindAlertTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		03B62FAC18DAD8C50032590F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				03B62FAD18DAD8C50032590F /* Foundation.framework */,
+				03B62FAF18DAD8C50032590F /* CoreGraphics.framework */,
+				03B62FB118DAD8C50032590F /* UIKit.framework */,
+				03B62FCF18DAD8C50032590F /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		03B62FB318DAD8C50032590F /* WindAlert */ = {
+			isa = PBXGroup;
+			children = (
+				03B62FBC18DAD8C50032590F /* AppDelegate.h */,
+				03B62FBD18DAD8C50032590F /* AppDelegate.m */,
+				03B62FBF18DAD8C50032590F /* Main_iPhone.storyboard */,
+				03B62FC218DAD8C50032590F /* Main_iPad.storyboard */,
+				03B62FC518DAD8C50032590F /* ViewController.h */,
+				03B62FC618DAD8C50032590F /* ViewController.m */,
+				03B62FC818DAD8C50032590F /* Images.xcassets */,
+				03B62FB418DAD8C50032590F /* Supporting Files */,
+			);
+			path = WindAlert;
+			sourceTree = "<group>";
+		};
+		03B62FB418DAD8C50032590F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				03B62FB518DAD8C50032590F /* WindAlert-Info.plist */,
+				03B62FB618DAD8C50032590F /* InfoPlist.strings */,
+				03B62FB918DAD8C50032590F /* main.m */,
+				03B62FBB18DAD8C50032590F /* WindAlert-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		03B62FD518DAD8C50032590F /* WindAlertTests */ = {
+			isa = PBXGroup;
+			children = (
+				03B62FDB18DAD8C50032590F /* WindAlertTests.m */,
+				03B62FD618DAD8C50032590F /* Supporting Files */,
+			);
+			path = WindAlertTests;
+			sourceTree = "<group>";
+		};
+		03B62FD618DAD8C50032590F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				03B62FD718DAD8C50032590F /* WindAlertTests-Info.plist */,
+				03B62FD818DAD8C50032590F /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		03B62FA918DAD8C50032590F /* WindAlert */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 03B62FDF18DAD8C50032590F /* Build configuration list for PBXNativeTarget "WindAlert" */;
+			buildPhases = (
+				03B62FA618DAD8C50032590F /* Sources */,
+				03B62FA718DAD8C50032590F /* Frameworks */,
+				03B62FA818DAD8C50032590F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WindAlert;
+			productName = WindAlert;
+			productReference = 03B62FAA18DAD8C50032590F /* WindAlert.app */;
+			productType = "com.apple.product-type.application";
+		};
+		03B62FCD18DAD8C50032590F /* WindAlertTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 03B62FE218DAD8C50032590F /* Build configuration list for PBXNativeTarget "WindAlertTests" */;
+			buildPhases = (
+				03B62FCA18DAD8C50032590F /* Sources */,
+				03B62FCB18DAD8C50032590F /* Frameworks */,
+				03B62FCC18DAD8C50032590F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				03B62FD418DAD8C50032590F /* PBXTargetDependency */,
+			);
+			name = WindAlertTests;
+			productName = WindAlertTests;
+			productReference = 03B62FCE18DAD8C50032590F /* WindAlertTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		03B62FA218DAD8C50032590F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Josh Heald";
+				TargetAttributes = {
+					03B62FCD18DAD8C50032590F = {
+						TestTargetID = 03B62FA918DAD8C50032590F;
+					};
+				};
+			};
+			buildConfigurationList = 03B62FA518DAD8C50032590F /* Build configuration list for PBXProject "WindAlert" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 03B62FA118DAD8C50032590F;
+			productRefGroup = 03B62FAB18DAD8C50032590F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				03B62FA918DAD8C50032590F /* WindAlert */,
+				03B62FCD18DAD8C50032590F /* WindAlertTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		03B62FA818DAD8C50032590F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03B62FC418DAD8C50032590F /* Main_iPad.storyboard in Resources */,
+				03B62FC918DAD8C50032590F /* Images.xcassets in Resources */,
+				03B62FC118DAD8C50032590F /* Main_iPhone.storyboard in Resources */,
+				03B62FB818DAD8C50032590F /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		03B62FCC18DAD8C50032590F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03B62FDA18DAD8C50032590F /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		03B62FA618DAD8C50032590F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03B62FC718DAD8C50032590F /* ViewController.m in Sources */,
+				03B62FBE18DAD8C50032590F /* AppDelegate.m in Sources */,
+				03B62FBA18DAD8C50032590F /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		03B62FCA18DAD8C50032590F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03B62FDC18DAD8C50032590F /* WindAlertTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		03B62FD418DAD8C50032590F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 03B62FA918DAD8C50032590F /* WindAlert */;
+			targetProxy = 03B62FD318DAD8C50032590F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		03B62FB618DAD8C50032590F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				03B62FB718DAD8C50032590F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		03B62FBF18DAD8C50032590F /* Main_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				03B62FC018DAD8C50032590F /* Base */,
+			);
+			name = Main_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		03B62FC218DAD8C50032590F /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				03B62FC318DAD8C50032590F /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		03B62FD818DAD8C50032590F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				03B62FD918DAD8C50032590F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		03B62FDD18DAD8C50032590F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		03B62FDE18DAD8C50032590F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		03B62FE018DAD8C50032590F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "WindAlert/WindAlert-Prefix.pch";
+				INFOPLIST_FILE = "WindAlert/WindAlert-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		03B62FE118DAD8C50032590F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "WindAlert/WindAlert-Prefix.pch";
+				INFOPLIST_FILE = "WindAlert/WindAlert-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		03B62FE318DAD8C50032590F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/WindAlert.app/WindAlert";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "WindAlert/WindAlert-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "WindAlertTests/WindAlertTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		03B62FE418DAD8C50032590F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/WindAlert.app/WindAlert";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "WindAlert/WindAlert-Prefix.pch";
+				INFOPLIST_FILE = "WindAlertTests/WindAlertTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		03B62FA518DAD8C50032590F /* Build configuration list for PBXProject "WindAlert" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				03B62FDD18DAD8C50032590F /* Debug */,
+				03B62FDE18DAD8C50032590F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		03B62FDF18DAD8C50032590F /* Build configuration list for PBXNativeTarget "WindAlert" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				03B62FE018DAD8C50032590F /* Debug */,
+				03B62FE118DAD8C50032590F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		03B62FE218DAD8C50032590F /* Build configuration list for PBXNativeTarget "WindAlertTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				03B62FE318DAD8C50032590F /* Debug */,
+				03B62FE418DAD8C50032590F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 03B62FA218DAD8C50032590F /* Project object */;
+}
