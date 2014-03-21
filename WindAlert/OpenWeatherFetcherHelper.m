@@ -10,7 +10,11 @@
 
 @interface OpenWeatherFetcherHelper ()
 
-+ (NSDictionary *)dictionaryFromJSONData:(NSData *)data withKeysForValuesAtKeyPaths:(NSArray *)keysToKeyPaths;
++ (NSDictionary *)propertyListFromJSONData:(NSData *)data;
++ (NSDictionary *)dictionaryFromPropertyList:(NSDictionary *)propertyList withKeys:(NSArray*)keys forValuesAtKeyPaths:(NSArray *)KeyPaths;
++ (NSDictionary *)windForecastFromForecast:(NSDictionary *)forecast withDirectionKey:(NSString *)directionKey andSpeedKey:(NSString *)speedKey;
++ (NSArray *)allForecastsInWeatherData:(NSData *)weatherData onDate:(NSDate *)date;
++ (BOOL)date:(NSDate *)date1 isTheSameDayAsAnotherDate:(NSDate *)date2;
 
 @end
 
@@ -20,13 +24,12 @@
 {
     NSDictionary *currentWind;
     
-    NSDictionary *currentWeatherPropertyList = [self propertyListFromJSONData:weatherData];
-    
-    if ([[currentWeatherPropertyList valueForKeyPath:@"dt"] isKindOfClass:[NSNumber class]]) {
-        NSDate *forecastDate = [NSDate dateWithTimeIntervalSince1970:[(NSNumber *)[currentWeatherPropertyList valueForKeyPath:@"dt"] integerValue]];
-        currentWind = [NSDictionary dictionaryWithObjects:@[[self dictionaryFromPropertyList:currentWeatherPropertyList
-                                                                 withKeysForValuesAtKeyPaths:@[@{@"KeyPath": @"wind.deg", @"Key": @"direction"}, @{@"KeyPath": @"wind.speed", @"Key": @"speed"}]], forecastDate]
-                                                  forKeys:@[@"wind", @"datetime"]];
+    if (weatherData) {
+        NSDictionary *currentWeatherConditions = [self propertyListFromJSONData:weatherData];
+        
+        currentWind = [self windForecastFromForecast:currentWeatherConditions
+                                    withDirectionKey:@"wind.deg"
+                                         andSpeedKey:@"wind.speed"];
     }
     
     return currentWind;
@@ -36,20 +39,15 @@
 {
     NSDictionary *dailyForecast;
     
-    NSMutableArray *allForecasts = [NSMutableArray arrayWithArray:[[self propertyListFromJSONData:weatherData] valueForKeyPath:@"list"]];
-    NSUInteger indexOfForecastForSpecifiedDate = [allForecasts indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
-        if ([[obj valueForKeyPath:@"dt"] isKindOfClass:[NSNumber class]]) {
-            NSNumber *timestampValue = [obj valueForKeyPath:@"dt"];
-            
-            return [[NSDate dateWithTimeIntervalSince1970:[timestampValue integerValue]] compare:date] == NSOrderedSame;
+    if (weatherData) {
+        NSArray *allForecasts = [self allForecastsInWeatherData:weatherData onDate:date];
+        
+        if ([allForecasts count] == 1) {
+            dailyForecast = [self windForecastFromForecast:allForecasts[0]
+                                          withDirectionKey:@"deg"
+                                               andSpeedKey:@"speed"];
         }
-        return NO;
-    }];
-    
-    NSDictionary *windForecast = [self dictionaryFromPropertyList:allForecasts[indexOfForecastForSpecifiedDate]
-                                      withKeysForValuesAtKeyPaths:@[@{@"KeyPath": @"deg", @"Key": @"direction"}, @{@"KeyPath": @"speed", @"Key": @"speed"}]];
-    
-    dailyForecast = [[NSDictionary alloc] initWithObjects:@[windForecast, date] forKeys:@[@"wind", @"datetime"]];
+    }
     
     return dailyForecast;
 }
@@ -58,26 +56,16 @@
 {
     NSMutableArray *forecasts;
     
-    NSMutableArray *allForecasts = [NSMutableArray arrayWithArray:[[self propertyListFromJSONData:weatherData] valueForKeyPath:@"list"]];
-    NSIndexSet *indexesOfForecastsForSpecifiedDate = [allForecasts indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
-        if ([[obj valueForKeyPath:@"dt"] isKindOfClass:[NSNumber class]]) {
-            NSNumber *timestampValue = [obj valueForKeyPath:@"dt"];
-            NSDate *forecastDate = [NSDate dateWithTimeIntervalSince1970:[timestampValue integerValue]];
-            return [self date:forecastDate isTheSameDayAsAnotherDate:date];
-        }
-        return NO;
-    }];
-    
-    NSArray *forecastsForSpecifiedDate = [allForecasts objectsAtIndexes:indexesOfForecastsForSpecifiedDate];
-    if (forecastsForSpecifiedDate) {
-        forecasts = [[NSMutableArray alloc] init];
+    if (weatherData) {
+        NSArray *forecastsForSpecifiedDate = [self allForecastsInWeatherData:weatherData onDate:date];
         
-        for (NSDictionary *forecast in forecastsForSpecifiedDate) {
-            if ([[forecast valueForKeyPath:@"dt"] isKindOfClass:[NSNumber class]]) {
-                NSDate *forecastTime = [NSDate dateWithTimeIntervalSince1970:[(NSNumber *)[forecast valueForKeyPath:@"dt"] integerValue]];
-                NSDictionary *windData = [self dictionaryFromPropertyList:forecast
-                                              withKeysForValuesAtKeyPaths:@[@{@"KeyPath": @"wind.deg", @"Key": @"direction"}, @{@"KeyPath": @"wind.speed", @"Key": @"speed"}]];
-                [forecasts addObject:[NSDictionary dictionaryWithObjects:@[windData, forecastTime] forKeys:@[@"wind", @"datetime"]]];
+        if (forecastsForSpecifiedDate) {
+            forecasts = [[NSMutableArray alloc] init];
+            
+            for (NSDictionary *forecast in forecastsForSpecifiedDate) {
+                [forecasts addObject:[self windForecastFromForecast:forecast
+                                                   withDirectionKey:@"wind.deg"
+                                                        andSpeedKey:@"wind.speed"]];
             }
         }
     }
@@ -91,7 +79,9 @@
     
     NSMutableArray *cities = [[NSMutableArray alloc] initWithCapacity:cityList.count];
     for (NSDictionary *city in cityList) {
-        [cities addObject:[self dictionaryFromPropertyList:city withKeysForValuesAtKeyPaths:@[@{@"KeyPath": @"id", @"Key": @"cityID"}, @{@"KeyPath": @"name", @"Key": @"name"}, @{@"KeyPath": @"sys.country", @"Key": @"country"}]]];
+        [cities addObject:[self dictionaryFromPropertyList:city
+                                                  withKeys:@[@"cityID", @"name", @"country"]
+                                       forValuesAtKeyPaths:@[@"id", @"name", @"sys.country"]]];
     }
     
     return cities;
@@ -106,20 +96,6 @@
     return direction % 16;
 }
 
-+ (NSDictionary *)dictionaryFromJSONData:(NSData *)data withKeysForValuesAtKeyPaths:(NSArray *)keysToKeyPaths //array of dictionaries
-{
-    NSDictionary *dictionary;
-    
-    NSDictionary *dataPropertyList = [self propertyListFromJSONData:data];
-        
-    if(dataPropertyList)
-    {
-        dictionary = [self dictionaryFromPropertyList:dataPropertyList withKeysForValuesAtKeyPaths:keysToKeyPaths];
-    }
-    
-    return dictionary;
-}
-
 + (NSDictionary *)propertyListFromJSONData:(NSData *)data
 {
     NSDictionary *propertyList;
@@ -132,18 +108,59 @@
     return propertyList;
 }
 
-+ (NSDictionary *)dictionaryFromPropertyList:(NSDictionary *)propertyList withKeysForValuesAtKeyPaths:(NSArray *)keysToKeyPaths
++ (NSDictionary *)dictionaryFromPropertyList:(NSDictionary *)propertyList withKeys:(NSArray*)keys forValuesAtKeyPaths:(NSArray *)KeyPaths
 {
-    NSArray *keys = [keysToKeyPaths valueForKey:@"Key"];
-    NSMutableArray *values = [[NSMutableArray alloc] initWithCapacity:keysToKeyPaths.count];
-    for (NSString *keypath in [keysToKeyPaths valueForKey:@"KeyPath"]) {
+    NSMutableArray *values = [[NSMutableArray alloc] initWithCapacity:keys.count];
+    for (NSString *keypath in KeyPaths) {
         [values addObject:[propertyList valueForKeyPath:keypath]];
     }
     
     return [[NSDictionary alloc] initWithObjects:values forKeys:keys];
 }
 
-+ (BOOL)date:(NSDate*)date1 isTheSameDayAsAnotherDate:(NSDate*)date2 {
++ (NSDictionary *)windForecastFromForecast:(NSDictionary *)forecast withDirectionKey:(NSString *)directionKey andSpeedKey:(NSString *)speedKey
+{
+    NSDictionary *windForecast;
+    
+    if ([[forecast valueForKeyPath:@"dt"] isKindOfClass:[NSNumber class]]) {
+        NSInteger timestamp = [(NSNumber *)[forecast valueForKeyPath:@"dt"] integerValue];
+        windForecast = @{@"wind": [self dictionaryFromPropertyList:forecast
+                                                         withKeys:@[@"direction", @"speed"]
+                                              forValuesAtKeyPaths:@[directionKey, speedKey]],
+                        @"datetime": [NSDate dateWithTimeIntervalSince1970:timestamp]};
+    }
+    
+    return windForecast;
+}
+
++ (NSArray *)allForecastsInWeatherData:(NSData *)weatherData onDate:(NSDate *)date
+{
+    NSArray *forecasts;
+    
+    if (weatherData) {
+        NSMutableArray *allForecasts = [NSMutableArray arrayWithArray:[[self propertyListFromJSONData:weatherData] valueForKeyPath:@"list"]];
+        
+        NSIndexSet *indexesOfForecastsForSpecifiedDate = [allForecasts indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+            if ([[obj valueForKeyPath:@"dt"] isKindOfClass:[NSNumber class]]) {
+                NSNumber *timestampValue = [obj valueForKeyPath:@"dt"];
+                NSDate *forecastDate = [NSDate dateWithTimeIntervalSince1970:[timestampValue integerValue]];
+                return [self date:forecastDate isTheSameDayAsAnotherDate:date];
+            }
+            return NO;
+        }];
+        
+        if ([indexesOfForecastsForSpecifiedDate count] > 0) {
+            forecasts = [allForecasts objectsAtIndexes:indexesOfForecastsForSpecifiedDate];
+        } else {
+            forecasts = @[];
+        }
+    }
+    
+    return forecasts;
+}
+
++ (BOOL)date:(NSDate*)date1 isTheSameDayAsAnotherDate:(NSDate*)date2
+{
     NSCalendar* calendar = [NSCalendar currentCalendar];
     
     NSDateComponents* date1Components = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit fromDate:date1];
@@ -153,5 +170,4 @@
     [date1Components month] == [date2Components month] &&
     [date1Components year]  == [date2Components year];
 }
-
 @end
