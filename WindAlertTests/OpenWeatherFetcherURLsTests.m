@@ -31,8 +31,8 @@
 
 - (void)testWhenIGetTheAPIURLToSearchForACityNameTheURLIsConstructedCorrectly
 {
-    NSURL *expectedURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/find?q=London&type=accurate&cnt=5&mode=json", OPENWEATHER_API_ADDRESS]];
-    XCTAssertEqualObjects(expectedURL, [OpenWeatherFetcherURLs urlForCitySearchWithName:@"London"], @"The OpenWeatherFetcherURLs class should construct a URL for a search request for the passed city, to retrieve maximum 5 results");
+    NSURL *expectedURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/find?q=London&type=like&cnt=20&mode=json", OPENWEATHER_API_ADDRESS]];
+    XCTAssertEqualObjects(expectedURL, [OpenWeatherFetcherURLs urlForCitySearchWithName:@"London"], @"The OpenWeatherFetcherURLs class should construct a URL for a search request for the passed city, to retrieve maximum 20 results");
 }
 
 - (void)testWhenIGetTheAPIURLToSearchForACityWithoutPassingANameTheURLIsNotReturned

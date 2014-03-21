@@ -8,6 +8,7 @@
 
 #import "CitySearchTableViewController.h"
 #import "OpenWeatherFetcher.h"
+#import "FavouriteCitiesTableViewController.h"
 
 @interface CitySearchTableViewController () <UISearchBarDelegate>
 
@@ -34,8 +35,44 @@
 
 - (void)setSearchResults:(NSArray *)searchResults
 {
+    [self.tableView beginUpdates];
+    
+    NSMutableArray *cities = [_searchResults mutableCopy];
+    
+    //first remove search results not in the new set
+    NSIndexSet *removedCityIndexes = [cities indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+        return ![searchResults containsObject:obj];
+    }];
+    [cities removeObjectsAtIndexes:removedCityIndexes];
+    _searchResults = cities;
+    
+    //then animate the deletions
+    NSMutableArray *removedCityIndexPaths = [[NSMutableArray alloc] init];
+    [removedCityIndexes enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
+        [removedCityIndexPaths addObject:[NSIndexPath indexPathForRow:idx inSection:0]];
+    }];
+    
+    [self.tableView deleteRowsAtIndexPaths:removedCityIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+    //now add search results which are in the new set
+    NSMutableArray *newCities = [searchResults mutableCopy];
+    [newCities removeObjectsInArray:_searchResults];
+    
     _searchResults = searchResults;
-    [self.tableView reloadData];
+    
+    //then animate the insertions
+    NSIndexSet *addedCityIndexes = [_searchResults indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+        return [newCities containsObject:obj];
+    }];
+    NSMutableArray *addedCityIndexPaths = [[NSMutableArray alloc] init];
+    [addedCityIndexes enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
+        [addedCityIndexPaths addObject:[NSIndexPath indexPathForRow:idx inSection:0]];
+    }];
+    
+    [self.tableView insertRowsAtIndexPaths:addedCityIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+    [self.tableView endUpdates];
+    //[self.tableView reloadData];
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -55,6 +92,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     self.searchBar.delegate = self;
+    self.title = @"Add City";
 }
 
 - (void)didReceiveMemoryWarning
@@ -92,6 +130,10 @@
     return cell;
 }
 
+- (IBAction)cancel:(id)sender
+{
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
+}
 
 /*
 // Override to support conditional editing of the table view.
@@ -131,15 +173,24 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([sender isKindOfClass:[UITableViewCell class]]) {
+        if ([segue.destinationViewController isKindOfClass:[FavouriteCitiesTableViewController class]]) {
+            NSDictionary *city = self.searchResults[[self.tableView indexPathForCell:sender].row];
+            [(FavouriteCitiesTableViewController *)segue.destinationViewController addCity:city];
+        }
+    }
+    
+    /*if ([sender isKindOfClass:[NSDictionary class]]) {
+        if ([segue.destinationViewController isKindOfClass:[FavouriteCitiesTableViewController class]]) {
+            [(FavouriteCitiesTableViewController *)segue.destinationViewController addCity:sender];
+        }
+    }*/
 }
-*/
 
 @end
