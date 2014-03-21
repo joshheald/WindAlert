@@ -32,7 +32,7 @@ typedef NS_ENUM(NSInteger, CardinalDirections) {
 + (NSDictionary *)currentWindFromWeatherData:(NSData *)weatherData;
 + (NSDictionary *)dailyForecastWindFromWeatherData:(NSData *)weatherData forDate:(NSDate *)date;
 + (NSArray *)threeHourlyForecastWindFromWeatherData:(NSData *)weatherData forDate:(NSDate *)date;
-+ (NSDictionary *)cityFromCitySearchData:(NSData *)cityData;
++ (NSDictionary *)citiesFromCitySearchData:(NSData *)cityData;
 + (CardinalDirections)cardinalDirectionForDegrees:(NSNumber *)degrees;
 
 @end

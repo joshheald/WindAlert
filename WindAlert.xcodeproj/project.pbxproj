@@ -27,10 +27,10 @@
 		03B62FF018DB007D0032590F /* OpenWeatherFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B62FEF18DB007D0032590F /* OpenWeatherFetcher.m */; };
 		03B62FF318DB02F90032590F /* OpenWeatherFetcherHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B62FF218DB02F90032590F /* OpenWeatherFetcherHelper.m */; };
 		03B62FF518DB03460032590F /* OpenWeatherFetcherHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B62FF418DB03460032590F /* OpenWeatherFetcherHelperTests.m */; };
-		03B62FFE18DB24E50032590F /* city-search-response.json in Resources */ = {isa = PBXBuildFile; fileRef = 03B62FFC18DB24E50032590F /* city-search-response.json */; };
 		03B62FFF18DB24E50032590F /* current-weather-response.json in Resources */ = {isa = PBXBuildFile; fileRef = 03B62FFD18DB24E50032590F /* current-weather-response.json */; };
 		03B6300118DB2F2D0032590F /* daily-forecast-weather-response.json in Resources */ = {isa = PBXBuildFile; fileRef = 03B6300018DB2F2C0032590F /* daily-forecast-weather-response.json */; };
 		03B6300318DB3A960032590F /* three-hourly-forecast-weather-response.json in Resources */ = {isa = PBXBuildFile; fileRef = 03B6300218DB3A960032590F /* three-hourly-forecast-weather-response.json */; };
+		03B6300518DC29130032590F /* city-search-response.json in Resources */ = {isa = PBXBuildFile; fileRef = 03B6300418DC29130032590F /* city-search-response.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,10 +72,10 @@
 		03B62FF118DB02F90032590F /* OpenWeatherFetcherHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenWeatherFetcherHelper.h; sourceTree = "<group>"; };
 		03B62FF218DB02F90032590F /* OpenWeatherFetcherHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenWeatherFetcherHelper.m; sourceTree = "<group>"; };
 		03B62FF418DB03460032590F /* OpenWeatherFetcherHelperTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenWeatherFetcherHelperTests.m; sourceTree = "<group>"; };
-		03B62FFC18DB24E50032590F /* city-search-response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "city-search-response.json"; sourceTree = "<group>"; };
 		03B62FFD18DB24E50032590F /* current-weather-response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "current-weather-response.json"; sourceTree = "<group>"; };
 		03B6300018DB2F2C0032590F /* daily-forecast-weather-response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "daily-forecast-weather-response.json"; sourceTree = "<group>"; };
 		03B6300218DB3A960032590F /* three-hourly-forecast-weather-response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "three-hourly-forecast-weather-response.json"; sourceTree = "<group>"; };
+		03B6300418DC29130032590F /* city-search-response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "city-search-response.json"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,7 +179,7 @@
 		03B62FD618DAD8C50032590F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				03B62FFC18DB24E50032590F /* city-search-response.json */,
+				03B6300418DC29130032590F /* city-search-response.json */,
 				03B62FFD18DB24E50032590F /* current-weather-response.json */,
 				03B6300018DB2F2C0032590F /* daily-forecast-weather-response.json */,
 				03B6300218DB3A960032590F /* three-hourly-forecast-weather-response.json */,
@@ -283,11 +283,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03B6300518DC29130032590F /* city-search-response.json in Resources */,
 				03B6300118DB2F2D0032590F /* daily-forecast-weather-response.json in Resources */,
 				03B62FDA18DAD8C50032590F /* InfoPlist.strings in Resources */,
 				03B6300318DB3A960032590F /* three-hourly-forecast-weather-response.json in Resources */,
 				03B62FFF18DB24E50032590F /* current-weather-response.json in Resources */,
-				03B62FFE18DB24E50032590F /* city-search-response.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -85,10 +85,16 @@
     return forecasts;
 }
 
-+ (NSDictionary *)cityFromCitySearchData:(NSData *)cityData
++ (NSArray *)citiesFromCitySearchData:(NSData *)cityData
 {
-    return [self dictionaryFromJSONData:cityData
-            withKeysForValuesAtKeyPaths:@[@{@"KeyPath": @"id", @"Key": @"cityID"}, @{@"KeyPath": @"name", @"Key": @"name"}, @{@"KeyPath": @"sys.country", @"Key": @"country"}]];
+    NSArray *cityList = [[self propertyListFromJSONData:cityData] valueForKeyPath:@"list"];
+    
+    NSMutableArray *cities = [[NSMutableArray alloc] initWithCapacity:cityList.count];
+    for (NSDictionary *city in cityList) {
+        [cities addObject:[self dictionaryFromPropertyList:city withKeysForValuesAtKeyPaths:@[@{@"KeyPath": @"id", @"Key": @"cityID"}, @{@"KeyPath": @"name", @"Key": @"name"}, @{@"KeyPath": @"sys.country", @"Key": @"country"}]]];
+    }
+    
+    return cities;
 }
 
 + (CardinalDirections)cardinalDirectionForDegrees:(NSNumber *)degrees

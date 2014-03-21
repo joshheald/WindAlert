@@ -46,10 +46,11 @@
     NSString *filePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"city-search-response" ofType:@"json"];
     NSData *citySearchResponse = [NSData dataWithContentsOfFile:filePath];
     
-    NSDictionary *expectedCity = [[NSDictionary alloc] initWithObjects:@[@2643743, @"London", @"GB"]
-                                                               forKeys:@[@"cityID", @"name", @"country"]];
-    
-    XCTAssertEqualObjects(expectedCity, [OpenWeatherFetcherHelper cityFromCitySearchData:citySearchResponse], @"A city dictionary should be extracted from the search results");
+    NSArray *expectedCity = @[@{@"cityID": @2643743,
+                                @"name": @"London",
+                                @"country": @"GB"}];
+
+    XCTAssertEqualObjects(expectedCity, [OpenWeatherFetcherHelper citiesFromCitySearchData:citySearchResponse], @"A city dictionary should be extracted from the search results");
 }
 
 - (void)testICanGetCurrentWindConditionsFromJSONCurrentWeatherData
@@ -57,11 +58,9 @@
     NSString *filePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"current-weather-response" ofType:@"json"];
     NSData *currentWeatherResponse = [NSData dataWithContentsOfFile:filePath];
     
-    /*NSDictionary *expectedCurrentWindConditions = [[NSDictionary alloc]initWithObjects:@[@224, @3.6]
-                                                                        forKeys:@[@"direction", @"speed"]];*/
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:1395316279];
-    NSDictionary *expectedCurrentWindConditions = [[NSDictionary alloc] initWithObjects:@[@{@"direction": @224, @"speed":@3.6}, date]
-                                                                                forKeys:@[@"wind", @"datetime"]];
+    NSDictionary *expectedCurrentWindConditions = @{@"wind": @{@"direction": @224,
+                                                               @"speed":@3.6},
+                                                    @"datetime": [NSDate dateWithTimeIntervalSince1970:1395316279]};
     
     XCTAssertEqualObjects(expectedCurrentWindConditions, [OpenWeatherFetcherHelper currentWindFromWeatherData:currentWeatherResponse], @"A current conditions dictionary should be extracted from the current weather results");
 }
@@ -72,8 +71,9 @@
     NSData *dailyForecastWeatherResponse = [NSData dataWithContentsOfFile:filePath];
     
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:1395403200];
-    NSDictionary *expectedDailyForecast = [[NSDictionary alloc] initWithObjects:@[@{@"direction": @236, @"speed":@6.92}, date]
-                                                                        forKeys:@[@"wind", @"datetime"]];
+    NSDictionary *expectedDailyForecast = @{@"wind": @{@"direction": @236,
+                                                       @"speed":@6.92},
+                                            @"datetime": date};
     
     XCTAssertEqualObjects(expectedDailyForecast, [OpenWeatherFetcherHelper dailyForecastWindFromWeatherData:dailyForecastWeatherResponse forDate:date], @"A forecast conditions dictionary should be extracted from the forecast weather results for the specifed date");
 }
@@ -83,24 +83,32 @@
     NSString *filePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"three-hourly-forecast-weather-response" ofType:@"json"];
     NSData *threeHourlyForecastWeatherResponse = [NSData dataWithContentsOfFile:filePath];
     
-    NSMutableArray *expected3HourlyForecasts = [[NSMutableArray alloc] initWithCapacity:8];
-    [expected3HourlyForecasts addObject:[[NSDictionary alloc] initWithObjects:@[@{@"direction": @263.501, @"speed":@5.21}, [NSDate dateWithTimeIntervalSince1970:1395360000]]
-                                                                      forKeys:@[@"wind", @"datetime"]]];
-    [expected3HourlyForecasts addObject:[[NSDictionary alloc] initWithObjects:@[@{@"direction": @261.005, @"speed":@4.21}, [NSDate dateWithTimeIntervalSince1970:1395370800]]
-                                                                      forKeys:@[@"wind", @"datetime"]]];
-    [expected3HourlyForecasts addObject:[[NSDictionary alloc] initWithObjects:@[@{@"direction": @256.505, @"speed":@3.51}, [NSDate dateWithTimeIntervalSince1970:1395381600]]
-                                                                      forKeys:@[@"wind", @"datetime"]]];
-    [expected3HourlyForecasts addObject:[[NSDictionary alloc] initWithObjects:@[@{@"direction": @238.005, @"speed":@4.02}, [NSDate dateWithTimeIntervalSince1970:1395392400]]
-                                                                      forKeys:@[@"wind", @"datetime"]]];
-    [expected3HourlyForecasts addObject:[[NSDictionary alloc] initWithObjects:@[@{@"direction": @231.505, @"speed":@5.77}, [NSDate dateWithTimeIntervalSince1970:1395403200]]
-                                                                      forKeys:@[@"wind", @"datetime"]]];
-    [expected3HourlyForecasts addObject:[[NSDictionary alloc] initWithObjects:@[@{@"direction": @225.001, @"speed":@7.71}, [NSDate dateWithTimeIntervalSince1970:1395414000]]
-                                                                      forKeys:@[@"wind", @"datetime"]]];
-    [expected3HourlyForecasts addObject:[[NSDictionary alloc] initWithObjects:@[@{@"direction": @216.501, @"speed":@7.69}, [NSDate dateWithTimeIntervalSince1970:1395424800]]
-                                                                      forKeys:@[@"wind", @"datetime"]]];
-    [expected3HourlyForecasts addObject:[[NSDictionary alloc] initWithObjects:@[@{@"direction": @205.005, @"speed":@8.36}, [NSDate dateWithTimeIntervalSince1970:1395435600]]
-                                                                      forKeys:@[@"wind", @"datetime"]]];
-    
+    NSArray *expected3HourlyForecasts = @[
+                                          @{@"wind": @{@"direction": @263.501,
+                                                       @"speed":@5.21},
+                                            @"datetime": [NSDate dateWithTimeIntervalSince1970:1395360000]},
+                                          @{@"wind": @{@"direction": @261.005,
+                                                       @"speed":@4.21},
+                                            @"datetime": [NSDate dateWithTimeIntervalSince1970:1395370800]},
+                                          @{@"wind": @{@"direction": @256.505,
+                                                       @"speed":@3.51},
+                                            @"datetime": [NSDate dateWithTimeIntervalSince1970:1395381600]},
+                                          @{@"wind": @{@"direction": @238.005,
+                                                       @"speed":@4.02},
+                                            @"datetime": [NSDate dateWithTimeIntervalSince1970:1395392400]},
+                                          @{@"wind": @{@"direction": @231.505,
+                                                       @"speed":@5.77},
+                                            @"datetime": [NSDate dateWithTimeIntervalSince1970:1395403200]},
+                                          @{@"wind": @{@"direction": @225.001,
+                                                       @"speed":@7.71},
+                                            @"datetime": [NSDate dateWithTimeIntervalSince1970:1395414000]},
+                                          @{@"wind": @{@"direction": @216.501,
+                                                       @"speed":@7.69},
+                                            @"datetime": [NSDate dateWithTimeIntervalSince1970:1395424800]},
+                                          @{@"wind": @{@"direction": @205.005,
+                                                       @"speed":@8.36},
+                                            @"datetime": [NSDate dateWithTimeIntervalSince1970:1395435600]}
+                                          ];
     
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:1395403200];
     
