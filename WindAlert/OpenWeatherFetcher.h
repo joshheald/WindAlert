@@ -28,9 +28,13 @@
 
 @interface OpenWeatherFetcher : NSObject
 
-+ (NSArray *)citiesFoundForSearchString:(NSString *)searchString;
+//+ (NSArray *)citiesFoundForSearchString:(NSString *)searchString;
++ (void)citiesForSearchString:(NSString *)searchString withCompletionHandler:(void (^)(NSArray *cities))completionHandler;
 + (NSDictionary *)currentWindDataForCityWithID:(NSString *)cityID;
 + (NSDictionary *)dailyForecastWindDataForCityWithID:(NSString *)cityID onDate:(NSDate *)date;
 + (NSDictionary *)threeHourlyForecastWindDataForCityWithID:(NSString *)cityID onDate:(NSDate *)date;
 
+
+#define KEY_FOR_CITY_NAME @"name"
+#define KEY_FOR_COUNTRY_NAME @"country"
 @end

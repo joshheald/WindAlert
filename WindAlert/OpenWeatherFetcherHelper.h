@@ -28,11 +28,30 @@ typedef NS_ENUM(NSInteger, CardinalDirections) {
 };
 
 @interface OpenWeatherFetcherHelper : NSObject
-
+/*
+ A forecast dictionary is as follows:
+ { 
+   wind: {
+            speed: (double)mph,
+            direction: (double)degrees
+         }
+   datetime: (date)timeOfForecast
+ }
+ */
 + (NSDictionary *)currentWindFromWeatherData:(NSData *)weatherData;
 + (NSDictionary *)dailyForecastWindFromWeatherData:(NSData *)weatherData forDate:(NSDate *)date;
 + (NSArray *)threeHourlyForecastWindFromWeatherData:(NSData *)weatherData forDate:(NSDate *)date;
-+ (NSDictionary *)citiesFromCitySearchData:(NSData *)cityData;
+
+/*
+ A city dictionary is as follows:
+ { 
+   cityID: (integer)idFromApi
+   name: (string)name
+   country: (string)country(code)
+ }
+ */
++ (NSArray *)citiesFromCitySearchData:(NSData *)cityData;
+
 + (CardinalDirections)cardinalDirectionForDegrees:(NSNumber *)degrees;
 
 @end

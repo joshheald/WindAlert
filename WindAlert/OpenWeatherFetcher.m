@@ -7,14 +7,22 @@
 //
 
 #import "OpenWeatherFetcher.h"
+#import "OpenWeatherFetcherURLs.h"
+#import "OpenWeatherFetcherHelper.h"
 
 @implementation OpenWeatherFetcher
 
-+ (NSArray *)citiesFoundForSearchString:(NSString *)searchString
++ (void)citiesForSearchString:(NSString *)searchString withCompletionHandler:(void (^)(NSArray *cities))completionHandler
 {
-    NSArray *cities;
+    NSURL *url = [OpenWeatherFetcherURLs urlForCitySearchWithName:searchString];
     
-    return cities;
+    dispatch_queue_t searchQueue = dispatch_queue_create("city search", NULL);
+    dispatch_async(searchQueue, ^{
+        NSData *response = [NSData dataWithContentsOfURL:url];
+        NSArray *cities = [OpenWeatherFetcherHelper citiesFromCitySearchData:response];
+        NSLog(@"Cities found: %@", cities);
+        completionHandler(cities);
+    });
 }
 
 + (NSDictionary *)currentWindDataForCityWithID:(NSString *)cityID

@@ -15,7 +15,6 @@
 		03B62FBE18DAD8C50032590F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B62FBD18DAD8C50032590F /* AppDelegate.m */; };
 		03B62FC118DAD8C50032590F /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03B62FBF18DAD8C50032590F /* Main_iPhone.storyboard */; };
 		03B62FC418DAD8C50032590F /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03B62FC218DAD8C50032590F /* Main_iPad.storyboard */; };
-		03B62FC718DAD8C50032590F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B62FC618DAD8C50032590F /* ViewController.m */; };
 		03B62FC918DAD8C50032590F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03B62FC818DAD8C50032590F /* Images.xcassets */; };
 		03B62FD018DAD8C50032590F /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03B62FCF18DAD8C50032590F /* XCTest.framework */; };
 		03B62FD118DAD8C50032590F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03B62FAD18DAD8C50032590F /* Foundation.framework */; };
@@ -31,6 +30,7 @@
 		03B6300118DB2F2D0032590F /* daily-forecast-weather-response.json in Resources */ = {isa = PBXBuildFile; fileRef = 03B6300018DB2F2C0032590F /* daily-forecast-weather-response.json */; };
 		03B6300318DB3A960032590F /* three-hourly-forecast-weather-response.json in Resources */ = {isa = PBXBuildFile; fileRef = 03B6300218DB3A960032590F /* three-hourly-forecast-weather-response.json */; };
 		03B6300518DC29130032590F /* city-search-response.json in Resources */ = {isa = PBXBuildFile; fileRef = 03B6300418DC29130032590F /* city-search-response.json */; };
+		03B6300918DC4C650032590F /* CitySearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B6300818DC4C650032590F /* CitySearchTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,8 +56,6 @@
 		03B62FBD18DAD8C50032590F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		03B62FC018DAD8C50032590F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		03B62FC318DAD8C50032590F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		03B62FC518DAD8C50032590F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		03B62FC618DAD8C50032590F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		03B62FC818DAD8C50032590F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		03B62FCE18DAD8C50032590F /* WindAlertTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WindAlertTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		03B62FCF18DAD8C50032590F /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -76,6 +74,8 @@
 		03B6300018DB2F2C0032590F /* daily-forecast-weather-response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "daily-forecast-weather-response.json"; sourceTree = "<group>"; };
 		03B6300218DB3A960032590F /* three-hourly-forecast-weather-response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "three-hourly-forecast-weather-response.json"; sourceTree = "<group>"; };
 		03B6300418DC29130032590F /* city-search-response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "city-search-response.json"; sourceTree = "<group>"; };
+		03B6300718DC4C650032590F /* CitySearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CitySearchTableViewController.h; sourceTree = "<group>"; };
+		03B6300818DC4C650032590F /* CitySearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CitySearchTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,16 +137,9 @@
 			children = (
 				03B62FBC18DAD8C50032590F /* AppDelegate.h */,
 				03B62FBD18DAD8C50032590F /* AppDelegate.m */,
-				03B62FBF18DAD8C50032590F /* Main_iPhone.storyboard */,
-				03B62FE518DADE010032590F /* OpenWeatherFetcherURLs.h */,
-				03B62FE618DADE010032590F /* OpenWeatherFetcherURLs.m */,
-				03B62FEE18DB007D0032590F /* OpenWeatherFetcher.h */,
-				03B62FEF18DB007D0032590F /* OpenWeatherFetcher.m */,
-				03B62FF118DB02F90032590F /* OpenWeatherFetcherHelper.h */,
-				03B62FF218DB02F90032590F /* OpenWeatherFetcherHelper.m */,
-				03B62FC218DAD8C50032590F /* Main_iPad.storyboard */,
-				03B62FC518DAD8C50032590F /* ViewController.h */,
-				03B62FC618DAD8C50032590F /* ViewController.m */,
+				03B6300618DC45D90032590F /* OpenWeatherFetcher */,
+				03B6300A18DC4C6C0032590F /* Controllers */,
+				03B6300B18DC4C810032590F /* View */,
 				03B62FC818DAD8C50032590F /* Images.xcassets */,
 				03B62FB418DAD8C50032590F /* Supporting Files */,
 			);
@@ -194,6 +187,37 @@
 			children = (
 			);
 			name = "Mock Objects";
+			sourceTree = "<group>";
+		};
+		03B6300618DC45D90032590F /* OpenWeatherFetcher */ = {
+			isa = PBXGroup;
+			children = (
+				03B62FE518DADE010032590F /* OpenWeatherFetcherURLs.h */,
+				03B62FE618DADE010032590F /* OpenWeatherFetcherURLs.m */,
+				03B62FEE18DB007D0032590F /* OpenWeatherFetcher.h */,
+				03B62FEF18DB007D0032590F /* OpenWeatherFetcher.m */,
+				03B62FF118DB02F90032590F /* OpenWeatherFetcherHelper.h */,
+				03B62FF218DB02F90032590F /* OpenWeatherFetcherHelper.m */,
+			);
+			name = OpenWeatherFetcher;
+			sourceTree = "<group>";
+		};
+		03B6300A18DC4C6C0032590F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				03B6300718DC4C650032590F /* CitySearchTableViewController.h */,
+				03B6300818DC4C650032590F /* CitySearchTableViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		03B6300B18DC4C810032590F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				03B62FBF18DAD8C50032590F /* Main_iPhone.storyboard */,
+				03B62FC218DAD8C50032590F /* Main_iPad.storyboard */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,10 +322,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03B62FC718DAD8C50032590F /* ViewController.m in Sources */,
 				03B62FBE18DAD8C50032590F /* AppDelegate.m in Sources */,
 				03B62FE718DADE010032590F /* OpenWeatherFetcherURLs.m in Sources */,
 				03B62FF018DB007D0032590F /* OpenWeatherFetcher.m in Sources */,
+				03B6300918DC4C650032590F /* CitySearchTableViewController.m in Sources */,
 				03B62FF318DB02F90032590F /* OpenWeatherFetcherHelper.m in Sources */,
 				03B62FBA18DAD8C50032590F /* main.m in Sources */,
 			);

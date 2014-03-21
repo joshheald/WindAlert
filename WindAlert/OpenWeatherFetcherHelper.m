@@ -101,8 +101,11 @@
     NSDictionary *propertyList;
     
     if (data) {
-#warning handle error
-        propertyList = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+        NSError *error;
+        propertyList = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+        if (error) {
+            NSLog(@"Error parsing JSON: %@", [error localizedDescription]);
+        }
     }
     
     return propertyList;
