@@ -11,6 +11,7 @@
 #import "OpenWeatherFetcherHelper.h"
 #import "City.h"
 #import "ForecastsForCityTableViewController.h"
+#import "CityCurrentWeatherTableViewCell.h"
 
 @interface FavouriteCitiesTableViewController ()
 
@@ -84,14 +85,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Favourite City Cell" forIndexPath:indexPath];
+    CityCurrentWeatherTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Favourite City Cell" forIndexPath:indexPath];
     
     // Configure the cell...
     City *city = self.favouriteCities[indexPath.row];
-    cell.textLabel.text = city.name;
+    cell.cityLabel.text = city.name;
+    cell.countryLabel.text = city.country;
     
     if (city.currentWeather) {
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"S: %@, D: %d", [city.currentWeather valueForKeyPath:KEY_FOR_WIND_SPEED], [OpenWeatherFetcherHelper cardinalDirectionForDegrees:[city.currentWeather valueForKeyPath:KEY_FOR_WIND_DIRECTION]]];
+        cell.wind.speed = [city.currentWeather valueForKeyPath:KEY_FOR_WIND_SPEED];
+        cell.wind.direction = [OpenWeatherFetcherHelper cardinalDirectionForDegrees:[city.currentWeather valueForKeyPath:KEY_FOR_WIND_DIRECTION]];
     }
     
     return cell;
