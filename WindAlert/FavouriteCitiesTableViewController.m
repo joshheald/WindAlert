@@ -60,6 +60,7 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.title = @"Favourite Locations";
 }
 
 - (void)didReceiveMemoryWarning
@@ -150,8 +151,7 @@
         if ([segue.destinationViewController isKindOfClass:[ForecastsForCityTableViewController class]]) {
             ForecastsForCityTableViewController *dvc = segue.destinationViewController;
             if ([sender isKindOfClass:[UITableViewCell class]]) {
-                NSNumber *cityID = [self.favouriteCities[[self.tableView indexPathForCell:sender].row] valueForKey:@"cityID"];
-                dvc.cityID = cityID;
+                dvc.city = self.favouriteCities[[self.tableView indexPathForCell:sender].row];
             }
         }
     }

@@ -94,12 +94,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"Add Location";
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     self.searchBar.delegate = self;
-    self.title = @"Add City";
 }
 
 - (void)didReceiveMemoryWarning

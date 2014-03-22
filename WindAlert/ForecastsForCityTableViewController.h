@@ -10,6 +10,6 @@
 
 @interface ForecastsForCityTableViewController : UITableViewController
 
-@property (strong, nonatomic) NSNumber *cityID;
+@property (strong, nonatomic) NSDictionary *city;
 
 @end

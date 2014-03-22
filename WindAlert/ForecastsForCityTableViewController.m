@@ -27,7 +27,6 @@
     return self;
 }
 
-#define DAY_LENGTH 86400
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -41,6 +40,7 @@
     [self updateDayForecasts];
 }
 
+#define DAY_LENGTH 86400
 - (void)updateDayForecasts
 {
     NSMutableArray *datesForForecasts = [[NSMutableArray alloc] init];
@@ -50,10 +50,16 @@
     
     NSMutableArray *dayForecasts = [[NSMutableArray alloc] initWithCapacity:[datesForForecasts count]];
     for (NSDate *date in datesForForecasts) {
-        [dayForecasts addObject:[DayForecasts dayForecastsWithCityID:self.cityID forDate:date]];
+        [dayForecasts addObject:[DayForecasts dayForecastsWithCityID:[self.city valueForKey:@"cityID"] forDate:date]];
     }
     
     self.dayForecasts = dayForecasts;
+}
+
+- (void)setCity:(NSDictionary *)city
+{
+    _city = city;
+    self.title = [city valueForKey:@"name"];
 }
 
 - (void)didReceiveMemoryWarning
