@@ -9,10 +9,13 @@
 #import "ForecastsForCityTableViewController.h"
 #import "DayForecasts.h"
 #import "OpenWeatherFetcher.h"
+#import "ForecastsForDayTableViewCell.h"
+#import "HourlyWindView.h"
 
 @interface ForecastsForCityTableViewController ()
 
 @property (strong, nonatomic) NSArray *dayForecasts; //of DayForecasts
+@property (strong, nonatomic) NSIndexPath *indexPathOfPreviousSelection;
 
 @end
 
@@ -79,20 +82,70 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 0;
-    //return [self.dayForecasts count];
+    return [self.dayForecasts count];
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    ForecastsForDayTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Forecast Day Cell" forIndexPath:indexPath];
     
     // Configure the cell...
+    DayForecasts *forecasts = self.dayForecasts[indexPath.row];
+    cell.wind.speed = [forecasts.dayForecast valueForKeyPath:KEY_FOR_WIND_SPEED];
+    cell.wind.direction = [OpenWeatherFetcherHelper cardinalDirectionForDegrees:[forecasts.dayForecast valueForKeyPath:KEY_FOR_WIND_DIRECTION]];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    NSString *dateFormat = [NSDateFormatter dateFormatFromTemplate:@"EEEE, dd MMMM" options:0 locale:[NSLocale currentLocale]];
+    [dateFormatter setDateFormat:dateFormat];
+    
+    cell.dateLabel.text = [dateFormatter stringFromDate:forecasts.forecastDate];
     
     return cell;
 }
-*/
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSMutableArray *rowsToReload = [NSMutableArray arrayWithObject:indexPath];
+    if (self.indexPathOfPreviousSelection &&
+        [indexPath compare:self.indexPathOfPreviousSelection] != NSOrderedSame) {
+        [rowsToReload addObject:self.indexPathOfPreviousSelection];
+    }
+    
+    [tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+    self.indexPathOfPreviousSelection = indexPath;
+    
+    //add all the 3 hourly forecasts
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    
+    DayForecasts *forecasts = self.dayForecasts[indexPath.row];
+    
+    NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
+    [timeFormatter setTimeStyle:NSDateFormatterShortStyle];
+    for (NSInteger i = 0; i < [forecasts.threeHourlyForecasts count]; i++) {
+        NSDictionary *forecast = forecasts.threeHourlyForecasts[i];
+        
+        CGRect frame = CGRectMake((40 * i) + 2, 51, 36, 61);
+        HourlyWindView *view = [[HourlyWindView alloc] initWithFrame:frame];
+        
+        NSDate *forecastDate = [forecast valueForKeyPath:@"datetime"];
+        view.timeLabel.text = [timeFormatter stringFromDate:forecastDate];
+        
+        view.windView.speed = [forecast valueForKeyPath:KEY_FOR_WIND_SPEED];
+        view.windView.direction = [OpenWeatherFetcherHelper cardinalDirectionForDegrees:[forecast valueForKeyPath:KEY_FOR_WIND_DIRECTION]];
+        
+        [cell.contentView addSubview:view];
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([indexPath compare:[self.tableView indexPathForSelectedRow]] == NSOrderedSame)
+    {
+        return 112;
+    }
+    return 51;
+}
+
 
 /*
 // Override to support conditional editing of the table view.

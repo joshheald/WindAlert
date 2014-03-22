@@ -17,6 +17,7 @@
 		039A3FBA18DDBBE10075EFE1 /* WindDirectionSpeed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 039A3FB818DDBBE00075EFE1 /* WindDirectionSpeed@2x.png */; };
 		039A3FBD18DDBEA50075EFE1 /* WindDirectionSpeedUnknown.png in Resources */ = {isa = PBXBuildFile; fileRef = 039A3FBB18DDBEA50075EFE1 /* WindDirectionSpeedUnknown.png */; };
 		039A3FBE18DDBEA50075EFE1 /* WindDirectionSpeedUnknown@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 039A3FBC18DDBEA50075EFE1 /* WindDirectionSpeedUnknown@2x.png */; };
+		039A3FC118DDE01D0075EFE1 /* ForecastsForDayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 039A3FC018DDE01D0075EFE1 /* ForecastsForDayTableViewCell.m */; };
 		03B62FAE18DAD8C50032590F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03B62FAD18DAD8C50032590F /* Foundation.framework */; };
 		03B62FB018DAD8C50032590F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03B62FAF18DAD8C50032590F /* CoreGraphics.framework */; };
 		03B62FB218DAD8C50032590F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03B62FB118DAD8C50032590F /* UIKit.framework */; };
@@ -45,6 +46,8 @@
 		03B6301118DC86B80032590F /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B6301018DC86B80032590F /* City.m */; };
 		03B6301418DC86E00032590F /* CityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B6301318DC86E00032590F /* CityTests.m */; };
 		03B6301718DD7AEF0032590F /* DayForecasts.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B6301618DD7AEF0032590F /* DayForecasts.m */; };
+		03F1913B18DDF68700722679 /* HourlyWindView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F1913A18DDF68700722679 /* HourlyWindView.m */; };
+		03F1913D18DDF69C00722679 /* HourlyWindView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03F1913C18DDF69C00722679 /* HourlyWindView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +74,8 @@
 		039A3FB818DDBBE00075EFE1 /* WindDirectionSpeed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WindDirectionSpeed@2x.png"; sourceTree = "<group>"; };
 		039A3FBB18DDBEA50075EFE1 /* WindDirectionSpeedUnknown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WindDirectionSpeedUnknown.png; sourceTree = "<group>"; };
 		039A3FBC18DDBEA50075EFE1 /* WindDirectionSpeedUnknown@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WindDirectionSpeedUnknown@2x.png"; sourceTree = "<group>"; };
+		039A3FBF18DDE01D0075EFE1 /* ForecastsForDayTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForecastsForDayTableViewCell.h; sourceTree = "<group>"; };
+		039A3FC018DDE01D0075EFE1 /* ForecastsForDayTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForecastsForDayTableViewCell.m; sourceTree = "<group>"; };
 		03B62FAA18DAD8C50032590F /* WindAlert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WindAlert.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03B62FAD18DAD8C50032590F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		03B62FAF18DAD8C50032590F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -110,6 +115,9 @@
 		03B6301318DC86E00032590F /* CityTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityTests.m; sourceTree = "<group>"; };
 		03B6301518DD7AEF0032590F /* DayForecasts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayForecasts.h; sourceTree = "<group>"; };
 		03B6301618DD7AEF0032590F /* DayForecasts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayForecasts.m; sourceTree = "<group>"; };
+		03F1913918DDF68700722679 /* HourlyWindView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HourlyWindView.h; sourceTree = "<group>"; };
+		03F1913A18DDF68700722679 /* HourlyWindView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HourlyWindView.m; sourceTree = "<group>"; };
+		03F1913C18DDF69C00722679 /* HourlyWindView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HourlyWindView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,6 +275,11 @@
 				039A3FAC18DDA6E30075EFE1 /* WindView.xib */,
 				039A3FB418DDB0B70075EFE1 /* CityCurrentWeatherTableViewCell.h */,
 				039A3FB518DDB0B70075EFE1 /* CityCurrentWeatherTableViewCell.m */,
+				039A3FBF18DDE01D0075EFE1 /* ForecastsForDayTableViewCell.h */,
+				039A3FC018DDE01D0075EFE1 /* ForecastsForDayTableViewCell.m */,
+				03F1913918DDF68700722679 /* HourlyWindView.h */,
+				03F1913A18DDF68700722679 /* HourlyWindView.m */,
+				03F1913C18DDF69C00722679 /* HourlyWindView.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -359,6 +372,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				03B62FC418DAD8C50032590F /* Main_iPad.storyboard in Resources */,
+				03F1913D18DDF69C00722679 /* HourlyWindView.xib in Resources */,
 				039A3FAD18DDA6E30075EFE1 /* WindView.xib in Resources */,
 				039A3FBE18DDBEA50075EFE1 /* WindDirectionSpeedUnknown@2x.png in Resources */,
 				03B62FC918DAD8C50032590F /* Images.xcassets in Resources */,
@@ -389,10 +403,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				039A3FC118DDE01D0075EFE1 /* ForecastsForDayTableViewCell.m in Sources */,
 				03B62FBE18DAD8C50032590F /* AppDelegate.m in Sources */,
 				03B6301718DD7AEF0032590F /* DayForecasts.m in Sources */,
 				03B62FE718DADE010032590F /* OpenWeatherFetcherURLs.m in Sources */,
 				03B6301118DC86B80032590F /* City.m in Sources */,
+				03F1913B18DDF68700722679 /* HourlyWindView.m in Sources */,
 				03B62FF018DB007D0032590F /* OpenWeatherFetcher.m in Sources */,
 				039A3FAB18DDA6C40075EFE1 /* WindView.m in Sources */,
 				039A3FA818DD85940075EFE1 /* ForecastsForCityTableViewController.m in Sources */,

@@ -12,6 +12,8 @@
 
 @property (readonly, nonatomic) NSNumber *cityID;
 @property (readonly, nonatomic) NSDate *forecastDate;
+@property (readonly, nonatomic) NSDictionary *dayForecast;
+@property (readonly, nonatomic) NSArray *threeHourlyForecasts;
 
 + (DayForecasts *)dayForecastsWithCityID:(NSNumber *)cityID forDate:(NSDate *)forecastDate;
 

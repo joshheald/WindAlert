@@ -1,19 +1,14 @@
 //
-//  CityCurrentWeatherTableViewCell.m
+//  ForecastsForDayTableViewCell.m
 //  WindAlert
 //
 //  Created by Josh on 22/03/2014.
 //  Copyright (c) 2014 Josh Heald. All rights reserved.
 //
 
-#import "CityCurrentWeatherTableViewCell.h"
-#import "WindView.h"
+#import "ForecastsForDayTableViewCell.h"
 
-@interface CityCurrentWeatherTableViewCell ()
-
-@end
-
-@implementation CityCurrentWeatherTableViewCell
+@implementation ForecastsForDayTableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -33,7 +28,7 @@
 {
     [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
+    // Expand and add subviews
 }
 
 @end
