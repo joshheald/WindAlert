@@ -31,8 +31,8 @@
 //+ (NSArray *)citiesFoundForSearchString:(NSString *)searchString;
 + (void)citiesForSearchString:(NSString *)searchString withCompletionHandler:(void (^)(NSArray *cities))completionHandler;
 + (void)currentWindDataForCityWithID:(NSNumber *)cityID withCompletionHandler:(void (^)(NSDictionary *currentWeather))completionHandler;
-+ (NSDictionary *)dailyForecastWindDataForCityWithID:(NSString *)cityID onDate:(NSDate *)date;
-+ (NSDictionary *)threeHourlyForecastWindDataForCityWithID:(NSString *)cityID onDate:(NSDate *)date;
++ (void)dailyForecastWindDataForCityWithID:(NSNumber *)cityID onDate:(NSDate *)date withCompletionHandler:(void (^)(NSDictionary *dailyForecast))completionHandler;
++ (void)threeHourlyForecastWindDataForCityWithID:(NSNumber *)cityID onDate:(NSDate *)date withCompletionHandler:(void (^)(NSArray *threeHourlyForecasts))completionHandler;
 
 
 #define KEY_FOR_CITY_NAME @"name"
@@ -41,4 +41,6 @@
 
 #define KEY_FOR_WIND_SPEED @"wind.speed"
 #define KEY_FOR_WIND_DIRECTION @"wind.direction"
+
+#define MAX_DAILY_FORECAST_DAYS 14
 @end

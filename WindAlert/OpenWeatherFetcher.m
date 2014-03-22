@@ -12,7 +12,8 @@
 
 @implementation OpenWeatherFetcher
 
-+ (void)citiesForSearchString:(NSString *)searchString withCompletionHandler:(void (^)(NSArray *cities))completionHandler
++ (void)citiesForSearchString:(NSString *)searchString
+        withCompletionHandler:(void (^)(NSArray *cities))completionHandler
 {
     NSURL *url = [OpenWeatherFetcherURLs urlForCitySearchWithName:searchString];
     
@@ -25,7 +26,8 @@
     });
 }
 
-+ (void)currentWindDataForCityWithID:(NSNumber *)cityID withCompletionHandler:(void (^)(NSDictionary *currentWeather))completionHandler
++ (void)currentWindDataForCityWithID:(NSNumber *)cityID
+               withCompletionHandler:(void (^)(NSDictionary *currentWeather))completionHandler
 {
     NSURL *url = [OpenWeatherFetcherURLs urlForCurrentWeatherInCityWithID:cityID];
     
@@ -38,18 +40,39 @@
     });
 }
 
-+ (NSDictionary *)dailyForecastWindDataForCityWithID:(NSString *)cityID onDate:(NSDate *)date
++ (void)dailyForecastWindDataForCityWithID:(NSNumber *)cityID
+                                    onDate:(NSDate *)date
+                     withCompletionHandler:(void (^)(NSDictionary *dailyForecast))completionHandler
 {
-    NSDictionary *windData;
-    
-    return windData;
+    if (cityID && date) {
+        //could check whether to request fewer days here.
+        NSURL *url = [OpenWeatherFetcherURLs urlForDailyWeatherInCityWithID:cityID forNumberOfDays:MAX_DAILY_FORECAST_DAYS];
+        
+        dispatch_queue_t forecastQueue = dispatch_queue_create("daily forecasts", NULL);
+        dispatch_async(forecastQueue, ^{
+            NSData *response = [NSData dataWithContentsOfURL:url];
+            NSDictionary *dailyWeather = [OpenWeatherFetcherHelper dailyForecastWindFromWeatherData:response forDate:date];
+            NSLog(@"Daily weather forecast for %@: %@", date, dailyWeather);
+            completionHandler(dailyWeather);
+        });
+    }
 }
 
-+ (NSArray *)threeHourlyForecastWindDataForCityWithID:(NSString *)cityID onDate:(NSDate *)date
++ (void)threeHourlyForecastWindDataForCityWithID:(NSNumber *)cityID
+                                          onDate:(NSDate *)date
+                           withCompletionHandler:(void (^)(NSArray *threeHourlyForecasts))completionHandler
 {
-    NSArray *windData;
-    
-    return windData;
+    if (cityID && date) {
+        NSURL *url = [OpenWeatherFetcherURLs urlFor3HourlyWeatherInCityWithID:cityID];
+        
+        dispatch_queue_t forecastQueue = dispatch_queue_create("3 hourly forecasts", NULL);
+        dispatch_async(forecastQueue, ^{
+            NSData *response = [NSData dataWithContentsOfURL:url];
+            NSArray *threeHourlyWeather = [OpenWeatherFetcherHelper threeHourlyForecastWindFromWeatherData:response forDate:date];
+            NSLog(@"3 hourly forecasts for %@: %@", date, threeHourlyWeather);
+            completionHandler(threeHourlyWeather);
+        });
+    }
 }
 
 @end

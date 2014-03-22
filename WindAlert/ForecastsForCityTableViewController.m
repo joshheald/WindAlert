@@ -1,45 +1,22 @@
 //
-//  FavouriteCitiesTableViewController.m
+//  ForecastsForDayTableViewController.m
 //  WindAlert
 //
-//  Created by Josh on 21/03/2014.
+//  Created by Josh on 22/03/2014.
 //  Copyright (c) 2014 Josh Heald. All rights reserved.
 //
 
-#import "FavouriteCitiesTableViewController.h"
-#import "OpenWeatherFetcher.h"
-#import "OpenWeatherFetcherHelper.h"
-#import "City.h"
 #import "ForecastsForCityTableViewController.h"
+#import "DayForecasts.h"
+#import "OpenWeatherFetcher.h"
 
-@interface FavouriteCitiesTableViewController ()
+@interface ForecastsForCityTableViewController ()
 
-@property (strong, nonatomic) NSArray* favouriteCities;
+@property (strong, nonatomic) NSArray *dayForecasts; //of DayForecasts
 
 @end
 
-@implementation FavouriteCitiesTableViewController
-
-- (IBAction)addedCity:(UIStoryboardSegue *)segue
-{
-    //this is an unwind segue
-}
-
-- (void)addCity:(NSDictionary *)city
-{
-    if (![self.favouriteCities containsObject:city]) {
-        NSMutableArray *cities = [[NSArray arrayWithArray:self.favouriteCities] mutableCopy];
-        City *newCity = [City cityWithCityDictionary:city];
-        [cities addObject:newCity];
-        self.favouriteCities = cities;
-        NSIndexSet *allIndexes = [self.favouriteCities indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
-            return YES;
-        }];
-        [self.favouriteCities addObserver:self toObjectsAtIndexes:allIndexes forKeyPath:@"currentWeather" options:0 context:NULL];
-        [self.tableView reloadData];
-    }
-    //Update NSUserDefaults here (or in the setter?)
-}
+@implementation ForecastsForCityTableViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -50,6 +27,7 @@
     return self;
 }
 
+#define DAY_LENGTH 86400
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -59,6 +37,23 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    [self updateDayForecasts];
+}
+
+- (void)updateDayForecasts
+{
+    NSMutableArray *datesForForecasts = [[NSMutableArray alloc] init];
+    for (NSInteger i = 0; i < MAX_DAILY_FORECAST_DAYS; i++) {
+        [datesForForecasts addObject:[NSDate dateWithTimeIntervalSinceNow:i * DAY_LENGTH]];
+    }
+    
+    NSMutableArray *dayForecasts = [[NSMutableArray alloc] initWithCapacity:[datesForForecasts count]];
+    for (NSDate *date in datesForForecasts) {
+        [dayForecasts addObject:[DayForecasts dayForecastsWithCityID:self.cityID forDate:date]];
+    }
+    
+    self.dayForecasts = dayForecasts;
 }
 
 - (void)didReceiveMemoryWarning
@@ -78,25 +73,20 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [self.favouriteCities count];
+    return 0;
+    //return [self.dayForecasts count];
 }
 
-
+/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Favourite City Cell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
     // Configure the cell...
-    City *city = self.favouriteCities[indexPath.row];
-    cell.textLabel.text = city.name;
-    
-    if (city.currentWeather) {
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"S: %@, D: %d", [city.currentWeather valueForKeyPath:KEY_FOR_WIND_SPEED], [OpenWeatherFetcherHelper cardinalDirectionForDegrees:[city.currentWeather valueForKeyPath:KEY_FOR_WIND_DIRECTION]]];
-    }
     
     return cell;
 }
-
+*/
 
 /*
 // Override to support conditional editing of the table view.
@@ -136,34 +126,15 @@
 }
 */
 
-
+/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"View Forecasts For City"]) {
-        //set the cityID and set it off.
-        if ([segue.destinationViewController isKindOfClass:[ForecastsForCityTableViewController class]]) {
-            ForecastsForCityTableViewController *dvc = segue.destinationViewController;
-            if ([sender isKindOfClass:[UITableViewCell class]]) {
-                NSNumber *cityID = [self.favouriteCities[[self.tableView indexPathForCell:sender].row] valueForKey:@"cityID"];
-                dvc.cityID = cityID;
-            }
-        }
-    }
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
 }
+*/
 
-
-
-- (void)observeValueForKeyPath:(NSString *)keyPath
-                      ofObject:(id)object
-                        change:(NSDictionary *)change
-                       context:(void *)context
-{
-    if ([keyPath isEqualToString:@"currentWeather"]) {
-        //object contains the city we need to reload
-        [self.tableView reloadData];
-    }
-}
 @end

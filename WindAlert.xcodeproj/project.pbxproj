@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		039A3FA518DD7B790075EFE1 /* DayForecastsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 039A3FA418DD7B790075EFE1 /* DayForecastsTests.m */; };
+		039A3FA818DD85940075EFE1 /* ForecastsForCityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 039A3FA718DD85940075EFE1 /* ForecastsForCityTableViewController.m */; };
 		03B62FAE18DAD8C50032590F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03B62FAD18DAD8C50032590F /* Foundation.framework */; };
 		03B62FB018DAD8C50032590F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03B62FAF18DAD8C50032590F /* CoreGraphics.framework */; };
 		03B62FB218DAD8C50032590F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03B62FB118DAD8C50032590F /* UIKit.framework */; };
@@ -34,6 +36,7 @@
 		03B6300E18DC5F3C0032590F /* FavouriteCitiesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B6300D18DC5F3C0032590F /* FavouriteCitiesTableViewController.m */; };
 		03B6301118DC86B80032590F /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B6301018DC86B80032590F /* City.m */; };
 		03B6301418DC86E00032590F /* CityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B6301318DC86E00032590F /* CityTests.m */; };
+		03B6301718DD7AEF0032590F /* DayForecasts.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B6301618DD7AEF0032590F /* DayForecasts.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		039A3FA418DD7B790075EFE1 /* DayForecastsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayForecastsTests.m; sourceTree = "<group>"; };
+		039A3FA618DD85940075EFE1 /* ForecastsForCityTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForecastsForCityTableViewController.h; sourceTree = "<group>"; };
+		039A3FA718DD85940075EFE1 /* ForecastsForCityTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForecastsForCityTableViewController.m; sourceTree = "<group>"; };
 		03B62FAA18DAD8C50032590F /* WindAlert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WindAlert.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03B62FAD18DAD8C50032590F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		03B62FAF18DAD8C50032590F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -84,6 +90,8 @@
 		03B6300F18DC86B80032590F /* City.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = City.h; sourceTree = "<group>"; };
 		03B6301018DC86B80032590F /* City.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = City.m; sourceTree = "<group>"; };
 		03B6301318DC86E00032590F /* CityTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityTests.m; sourceTree = "<group>"; };
+		03B6301518DD7AEF0032590F /* DayForecasts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayForecasts.h; sourceTree = "<group>"; };
+		03B6301618DD7AEF0032590F /* DayForecasts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayForecasts.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +181,7 @@
 				03B62FE818DAE65D0032590F /* OpenWeatherFetcherURLsTests.m */,
 				03B62FF418DB03460032590F /* OpenWeatherFetcherHelperTests.m */,
 				03B6301318DC86E00032590F /* CityTests.m */,
+				039A3FA418DD7B790075EFE1 /* DayForecastsTests.m */,
 				03B62FEA18DAE6EE0032590F /* Mock Objects */,
 				03B62FD618DAD8C50032590F /* Supporting Files */,
 			);
@@ -217,6 +226,8 @@
 			children = (
 				03B6300C18DC5F3C0032590F /* FavouriteCitiesTableViewController.h */,
 				03B6300D18DC5F3C0032590F /* FavouriteCitiesTableViewController.m */,
+				039A3FA618DD85940075EFE1 /* ForecastsForCityTableViewController.h */,
+				039A3FA718DD85940075EFE1 /* ForecastsForCityTableViewController.m */,
 				03B6300718DC4C650032590F /* CitySearchTableViewController.h */,
 				03B6300818DC4C650032590F /* CitySearchTableViewController.m */,
 			);
@@ -237,6 +248,8 @@
 			children = (
 				03B6300F18DC86B80032590F /* City.h */,
 				03B6301018DC86B80032590F /* City.m */,
+				03B6301518DD7AEF0032590F /* DayForecasts.h */,
+				03B6301618DD7AEF0032590F /* DayForecasts.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -344,9 +357,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				03B62FBE18DAD8C50032590F /* AppDelegate.m in Sources */,
+				03B6301718DD7AEF0032590F /* DayForecasts.m in Sources */,
 				03B62FE718DADE010032590F /* OpenWeatherFetcherURLs.m in Sources */,
 				03B6301118DC86B80032590F /* City.m in Sources */,
 				03B62FF018DB007D0032590F /* OpenWeatherFetcher.m in Sources */,
+				039A3FA818DD85940075EFE1 /* ForecastsForCityTableViewController.m in Sources */,
 				03B6300918DC4C650032590F /* CitySearchTableViewController.m in Sources */,
 				03B6300E18DC5F3C0032590F /* FavouriteCitiesTableViewController.m in Sources */,
 				03B62FF318DB02F90032590F /* OpenWeatherFetcherHelper.m in Sources */,
@@ -361,6 +376,7 @@
 				03B62FE918DAE65D0032590F /* OpenWeatherFetcherURLsTests.m in Sources */,
 				03B62FF518DB03460032590F /* OpenWeatherFetcherHelperTests.m in Sources */,
 				03B6301418DC86E00032590F /* CityTests.m in Sources */,
+				039A3FA518DD7B790075EFE1 /* DayForecastsTests.m in Sources */,
 				03B62FDC18DAD8C50032590F /* WindAlertTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -568,6 +584,7 @@
 				03B62FE118DAD8C50032590F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		03B62FE218DAD8C50032590F /* Build configuration list for PBXNativeTarget "WindAlertTests" */ = {
 			isa = XCConfigurationList;
@@ -576,6 +593,7 @@
 				03B62FE418DAD8C50032590F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

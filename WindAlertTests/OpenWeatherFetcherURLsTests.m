@@ -59,12 +59,12 @@
 {
     NSNumber *cityID = @2643743;
     NSInteger daysCount = 14;
-    NSURL *expectedURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/daily?id=%@&cnt=%i&mode=json", OPENWEATHER_API_ADDRESS, cityID, daysCount]];
+    NSURL *expectedURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/forecast/daily?id=%@&cnt=%i&mode=json", OPENWEATHER_API_ADDRESS, cityID, daysCount]];
     
     XCTAssertEqualObjects(expectedURL, [OpenWeatherFetcherURLs urlForDailyWeatherInCityWithID:cityID forNumberOfDays:daysCount], @"The OpenWeatherFetcherURLs class should construct a URL for a request for the daily weather forecast in the passed city for the requested number of days");
     
     daysCount = 1;
-    expectedURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/daily?id=%@&cnt=%i&mode=json", OPENWEATHER_API_ADDRESS, cityID, daysCount]];
+    expectedURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/forecast/daily?id=%@&cnt=%i&mode=json", OPENWEATHER_API_ADDRESS, cityID, daysCount]];
     
     XCTAssertEqualObjects(expectedURL, [OpenWeatherFetcherURLs urlForDailyWeatherInCityWithID:cityID forNumberOfDays:daysCount], @"The OpenWeatherFetcherURLs class should construct a URL for a request for the daily weather forecast in the passed city for the requested number of days");
 }
