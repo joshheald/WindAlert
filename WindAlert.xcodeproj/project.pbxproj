@@ -32,6 +32,8 @@
 		03B6300518DC29130032590F /* city-search-response.json in Resources */ = {isa = PBXBuildFile; fileRef = 03B6300418DC29130032590F /* city-search-response.json */; };
 		03B6300918DC4C650032590F /* CitySearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B6300818DC4C650032590F /* CitySearchTableViewController.m */; };
 		03B6300E18DC5F3C0032590F /* FavouriteCitiesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B6300D18DC5F3C0032590F /* FavouriteCitiesTableViewController.m */; };
+		03B6301118DC86B80032590F /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B6301018DC86B80032590F /* City.m */; };
+		03B6301418DC86E00032590F /* CityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B6301318DC86E00032590F /* CityTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +81,9 @@
 		03B6300818DC4C650032590F /* CitySearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CitySearchTableViewController.m; sourceTree = "<group>"; };
 		03B6300C18DC5F3C0032590F /* FavouriteCitiesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavouriteCitiesTableViewController.h; sourceTree = "<group>"; };
 		03B6300D18DC5F3C0032590F /* FavouriteCitiesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavouriteCitiesTableViewController.m; sourceTree = "<group>"; };
+		03B6300F18DC86B80032590F /* City.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = City.h; sourceTree = "<group>"; };
+		03B6301018DC86B80032590F /* City.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = City.m; sourceTree = "<group>"; };
+		03B6301318DC86E00032590F /* CityTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +150,7 @@
 				03B6300B18DC4C810032590F /* View */,
 				03B62FC818DAD8C50032590F /* Images.xcassets */,
 				03B62FB418DAD8C50032590F /* Supporting Files */,
+				03B6301218DC86BB0032590F /* Model */,
 			);
 			path = WindAlert;
 			sourceTree = "<group>";
@@ -166,6 +172,7 @@
 				03B62FDB18DAD8C50032590F /* WindAlertTests.m */,
 				03B62FE818DAE65D0032590F /* OpenWeatherFetcherURLsTests.m */,
 				03B62FF418DB03460032590F /* OpenWeatherFetcherHelperTests.m */,
+				03B6301318DC86E00032590F /* CityTests.m */,
 				03B62FEA18DAE6EE0032590F /* Mock Objects */,
 				03B62FD618DAD8C50032590F /* Supporting Files */,
 			);
@@ -223,6 +230,15 @@
 				03B62FC218DAD8C50032590F /* Main_iPad.storyboard */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		03B6301218DC86BB0032590F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				03B6300F18DC86B80032590F /* City.h */,
+				03B6301018DC86B80032590F /* City.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -329,6 +345,7 @@
 			files = (
 				03B62FBE18DAD8C50032590F /* AppDelegate.m in Sources */,
 				03B62FE718DADE010032590F /* OpenWeatherFetcherURLs.m in Sources */,
+				03B6301118DC86B80032590F /* City.m in Sources */,
 				03B62FF018DB007D0032590F /* OpenWeatherFetcher.m in Sources */,
 				03B6300918DC4C650032590F /* CitySearchTableViewController.m in Sources */,
 				03B6300E18DC5F3C0032590F /* FavouriteCitiesTableViewController.m in Sources */,
@@ -343,6 +360,7 @@
 			files = (
 				03B62FE918DAE65D0032590F /* OpenWeatherFetcherURLsTests.m in Sources */,
 				03B62FF518DB03460032590F /* OpenWeatherFetcherHelperTests.m in Sources */,
+				03B6301418DC86E00032590F /* CityTests.m in Sources */,
 				03B62FDC18DAD8C50032590F /* WindAlertTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

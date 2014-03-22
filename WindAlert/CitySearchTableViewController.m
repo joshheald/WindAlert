@@ -21,13 +21,20 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    self.searchResults = nil;
     [searchBar resignFirstResponder];
     if (searchBar.text) {
-        [OpenWeatherFetcher citiesForSearchString:searchBar.text
+        [self performSearchAndUpdateTableViewWithSearchString:searchBar.text];
+    }
+}
+
+- (void)performSearchAndUpdateTableViewWithSearchString:(NSString *)searchString
+{
+    if ([searchString length] >= 3) {
+        __weak CitySearchTableViewController *weakSelf = self;
+        [OpenWeatherFetcher citiesForSearchString:searchString
                             withCompletionHandler:^(NSArray *cities) {
                                 dispatch_async(dispatch_get_main_queue(), ^{
-                                    self.searchResults = cities;
+                                    weakSelf.searchResults = cities;
                                 });
                             }];
     }

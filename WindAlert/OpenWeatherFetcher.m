@@ -25,11 +25,17 @@
     });
 }
 
-+ (NSDictionary *)currentWindDataForCityWithID:(NSString *)cityID
++ (void)currentWindDataForCityWithID:(NSNumber *)cityID withCompletionHandler:(void (^)(NSDictionary *currentWeather))completionHandler
 {
-    NSDictionary *windData;
+    NSURL *url = [OpenWeatherFetcherURLs urlForCurrentWeatherInCityWithID:cityID];
     
-    return windData;
+    dispatch_queue_t searchQueue = dispatch_queue_create("current weather", NULL);
+    dispatch_async(searchQueue, ^{
+        NSData *response = [NSData dataWithContentsOfURL:url];
+        NSDictionary *currentWeather = [OpenWeatherFetcherHelper currentWindFromWeatherData:response];
+        NSLog(@"Current weather: %@", currentWeather);
+        completionHandler(currentWeather);
+    });
 }
 
 + (NSDictionary *)dailyForecastWindDataForCityWithID:(NSString *)cityID onDate:(NSDate *)date

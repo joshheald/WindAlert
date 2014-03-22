@@ -25,34 +25,33 @@
     return searchURL;
 }
 
-+ (NSURL *)urlForCurrentWeatherInCityWithID:(NSString *)idString
++ (NSURL *)urlForCurrentWeatherInCityWithID:(NSNumber *)cityID
 {
     NSURL *currentWeatherURL;
     
-    if (idString && ![idString isEqualToString:@""]) {
-        currentWeatherURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/weather?id=&%@mode=%@", OPENWEATHER_API_ADDRESS, idString, OPENWEATHER_API_MODE]];
+    if (cityID) {
+        currentWeatherURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/weather?id=%@&mode=%@", OPENWEATHER_API_ADDRESS, cityID, OPENWEATHER_API_MODE]];
     }
     
     return currentWeatherURL;
 }
 
-+ (NSURL *)urlForDailyWeatherInCityWithID:(NSString *)cityID forNumberOfDays:(NSInteger)days
++ (NSURL *)urlForDailyWeatherInCityWithID:(NSNumber *)cityID forNumberOfDays:(NSInteger)days
 {
     NSURL *dailyForecastURL;
     
-    if ((cityID && ![cityID isEqualToString:@""]) &&
-        (days >= 1 && days <= 14)) {
+    if (cityID && (days >= 1 && days <= 14)) {
         dailyForecastURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/daily?id=%@&cnt=%i&mode=%@", OPENWEATHER_API_ADDRESS, cityID, days, OPENWEATHER_API_MODE]];
     }
     
     return dailyForecastURL;
 }
 
-+ (NSURL *)urlFor3HourlyWeatherInCityWithID:(NSString *)cityID
++ (NSURL *)urlFor3HourlyWeatherInCityWithID:(NSNumber *)cityID
 {
     NSURL *threeHourlyForecastURL;
     
-    if (cityID && ![cityID isEqualToString:@""]) {
+    if (cityID) {
         threeHourlyForecastURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/forecast?id=%@&mode=%@", OPENWEATHER_API_ADDRESS, cityID, OPENWEATHER_API_MODE]];
     }
     

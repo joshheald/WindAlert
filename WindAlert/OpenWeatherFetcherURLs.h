@@ -11,8 +11,8 @@
 @interface OpenWeatherFetcherURLs : NSObject
 
 + (NSURL *)urlForCitySearchWithName:(NSString *)name;
-+ (NSURL *)urlForCurrentWeatherInCityWithID:(NSString *)cityID;
-+ (NSURL *)urlForDailyWeatherInCityWithID:(NSString *)cityID forNumberOfDays:(NSInteger)days;
-+ (NSURL *)urlFor3HourlyWeatherInCityWithID:(NSString *)cityID;
++ (NSURL *)urlForCurrentWeatherInCityWithID:(NSNumber *)cityID;
++ (NSURL *)urlForDailyWeatherInCityWithID:(NSNumber *)cityID forNumberOfDays:(NSInteger)days;
++ (NSURL *)urlFor3HourlyWeatherInCityWithID:(NSNumber *)cityID;
 
 @end

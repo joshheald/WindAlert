@@ -44,8 +44,8 @@
 
 - (void)testWhenIGetTheAPIURLToGetCurrentWeatherDataForACityIDTheURLIsConstructedCorrectly
 {
-    NSString *cityID = @"2643743";
-    NSURL *expectedURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/weather?id=&%@mode=json", OPENWEATHER_API_ADDRESS, cityID]];
+    NSNumber *cityID = @2643743;
+    NSURL *expectedURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/weather?id=%@&mode=json", OPENWEATHER_API_ADDRESS, cityID]];
     
     XCTAssertEqualObjects(expectedURL, [OpenWeatherFetcherURLs urlForCurrentWeatherInCityWithID:cityID], @"The OpenWeatherFetcherURLs class should construct a URL for a request for the current weather in the passed city");
 }
@@ -53,13 +53,11 @@
 - (void)testWhenIGetTheAPIURLToGetCurrentWeatherDataForACityWithoutPassingAnIDTheURLIsNotReturned
 {
     XCTAssertNil([OpenWeatherFetcherURLs urlForCurrentWeatherInCityWithID:nil], @"The OpenWeatherFetcherURLs class should return nil when no city id is supplied");
-    
-    XCTAssertNil([OpenWeatherFetcherURLs urlForCurrentWeatherInCityWithID:@""], @"The OpenWeatherFetcherURLs class should return nil when an empty string is passed");
 }
 
 - (void)testWhenIGetTheAPIURLToGetTheDailyWeatherForcastDataForACityIDTheURLIsConstructedCorrectly
 {
-    NSString *cityID = @"2643743";
+    NSNumber *cityID = @2643743;
     NSInteger daysCount = 14;
     NSURL *expectedURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/daily?id=%@&cnt=%i&mode=json", OPENWEATHER_API_ADDRESS, cityID, daysCount]];
     
@@ -75,13 +73,11 @@
 {
     NSInteger daysCount = 2;
     XCTAssertNil([OpenWeatherFetcherURLs urlForDailyWeatherInCityWithID:nil forNumberOfDays:daysCount], @"The OpenWeatherFetcherURLs class should return nil when no city id is supplied");
-    
-    XCTAssertNil([OpenWeatherFetcherURLs urlForDailyWeatherInCityWithID:@"" forNumberOfDays:daysCount], @"The OpenWeatherFetcherURLs class should return nil when an empty string is passed");
 }
 
 - (void)testWhenIGetTheAPIURLToGetTheDailyWeatherForecastDataForACityIDWithAnOutOfRangeNumberOfDaysTheURLIsNotReturned
 {
-    NSString *cityID = @"2643743";
+    NSNumber *cityID = @2643743;
     NSInteger daysCount = 15;
     
     XCTAssertNil([OpenWeatherFetcherURLs urlForDailyWeatherInCityWithID:cityID forNumberOfDays:daysCount], @"The OpenWeatherFetcherURLs class should return nil when the requested number of days is over 14");
@@ -92,7 +88,7 @@
 
 - (void)testWhenIGetTheAPIURLToGetThe3HourlyWeatherForecastDataForACityIDTheURLIsConstructedCorrectly
 {
-    NSString *cityID = @"2643743";
+    NSNumber *cityID = @2643743;
     NSURL *expectedURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/forecast?id=%@&mode=json", OPENWEATHER_API_ADDRESS, cityID]];
     
     XCTAssertEqualObjects(expectedURL, [OpenWeatherFetcherURLs urlFor3HourlyWeatherInCityWithID:cityID], @"The OpenWeatherFetcherURLs class should construct a URL for a request for the 3 hourly 5 day weather forecast in the passed city");
@@ -102,6 +98,5 @@
 {
     XCTAssertNil([OpenWeatherFetcherURLs urlFor3HourlyWeatherInCityWithID:nil], @"The OpenWeatherFetcherURLs class should return nil when no city id is supplied");
     
-    XCTAssertNil([OpenWeatherFetcherURLs urlFor3HourlyWeatherInCityWithID:@""], @"The OpenWeatherFetcherURLs class should return nil when an empty string is passed");
 }
 @end

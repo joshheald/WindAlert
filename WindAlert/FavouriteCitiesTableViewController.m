@@ -8,6 +8,8 @@
 
 #import "FavouriteCitiesTableViewController.h"
 #import "OpenWeatherFetcher.h"
+#import "OpenWeatherFetcherHelper.h"
+#import "City.h"
 
 @interface FavouriteCitiesTableViewController ()
 
@@ -25,15 +27,15 @@
 - (void)addCity:(NSDictionary *)city
 {
     if (![self.favouriteCities containsObject:city]) {
-        [self.tableView beginUpdates];
-        
         NSMutableArray *cities = [[NSArray arrayWithArray:self.favouriteCities] mutableCopy];
-        [cities addObject:city];
+        City *newCity = [City cityWithCityDictionary:city];
+        [cities addObject:newCity];
         self.favouriteCities = cities;
-        
-        [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:[self.favouriteCities indexOfObject:city] inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
-        
-        [self.tableView endUpdates];
+        NSIndexSet *allIndexes = [self.favouriteCities indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+            return YES;
+        }];
+        [self.favouriteCities addObserver:self toObjectsAtIndexes:allIndexes forKeyPath:@"currentWeather" options:0 context:NULL];
+        [self.tableView reloadData];
     }
     //Update NSUserDefaults here (or in the setter?)
 }
@@ -84,9 +86,12 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Favourite City Cell" forIndexPath:indexPath];
     
     // Configure the cell...
-    NSDictionary *city = self.favouriteCities[indexPath.row];
-    cell.textLabel.text = [city valueForKeyPath:KEY_FOR_CITY_NAME];
-    cell.detailTextLabel.text = [city valueForKeyPath:KEY_FOR_COUNTRY_NAME];
+    City *city = self.favouriteCities[indexPath.row];
+    cell.textLabel.text = city.name;
+    
+    if (city.currentWeather) {
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"S: %@, D: %d", [city.currentWeather valueForKeyPath:KEY_FOR_WIND_SPEED], [OpenWeatherFetcherHelper cardinalDirectionForDegrees:[city.currentWeather valueForKeyPath:KEY_FOR_WIND_DIRECTION]]];
+    }
     
     return cell;
 }
@@ -140,4 +145,15 @@
 }
 */
 
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context
+{
+    if ([keyPath isEqualToString:@"currentWeather"]) {
+        //object contains the city we need to reload
+        [self.tableView reloadData];
+    }
+}
 @end

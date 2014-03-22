@@ -30,11 +30,15 @@
 
 //+ (NSArray *)citiesFoundForSearchString:(NSString *)searchString;
 + (void)citiesForSearchString:(NSString *)searchString withCompletionHandler:(void (^)(NSArray *cities))completionHandler;
-+ (NSDictionary *)currentWindDataForCityWithID:(NSString *)cityID;
++ (void)currentWindDataForCityWithID:(NSNumber *)cityID withCompletionHandler:(void (^)(NSDictionary *currentWeather))completionHandler;
 + (NSDictionary *)dailyForecastWindDataForCityWithID:(NSString *)cityID onDate:(NSDate *)date;
 + (NSDictionary *)threeHourlyForecastWindDataForCityWithID:(NSString *)cityID onDate:(NSDate *)date;
 
 
 #define KEY_FOR_CITY_NAME @"name"
 #define KEY_FOR_COUNTRY_NAME @"country"
+#define KEY_FOR_CITY_ID @"cityID"
+
+#define KEY_FOR_WIND_SPEED @"wind.speed"
+#define KEY_FOR_WIND_DIRECTION @"wind.direction"
 @end
