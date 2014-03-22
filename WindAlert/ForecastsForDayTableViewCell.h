@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "WindView.h"
+#import "DayForecasts.h"
 
 @interface ForecastsForDayTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet WindView *wind;
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (strong, nonatomic) DayForecasts *forecasts;
+
+- (void)showHourlyForecasts:(BOOL)show;
 
 @end
