@@ -97,9 +97,13 @@
     self.title = @"Add Location";
 }
 
+#define SYSTEM_VERSION_LESS_THAN(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
 - (void)viewWillAppear:(BOOL)animated
 {
     self.searchBar.delegate = self;
+    if (SYSTEM_VERSION_LESS_THAN(@"7_0")) {
+        self.searchBar.tintColor = self.navigationController.navigationBar.tintColor;
+    }
 }
 
 - (void)didReceiveMemoryWarning

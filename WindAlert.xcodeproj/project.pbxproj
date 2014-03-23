@@ -24,7 +24,6 @@
 		03B62FBA18DAD8C50032590F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B62FB918DAD8C50032590F /* main.m */; };
 		03B62FBE18DAD8C50032590F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B62FBD18DAD8C50032590F /* AppDelegate.m */; };
 		03B62FC118DAD8C50032590F /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03B62FBF18DAD8C50032590F /* Main_iPhone.storyboard */; };
-		03B62FC418DAD8C50032590F /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03B62FC218DAD8C50032590F /* Main_iPad.storyboard */; };
 		03B62FC918DAD8C50032590F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03B62FC818DAD8C50032590F /* Images.xcassets */; };
 		03B62FD018DAD8C50032590F /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03B62FCF18DAD8C50032590F /* XCTest.framework */; };
 		03B62FD118DAD8C50032590F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03B62FAD18DAD8C50032590F /* Foundation.framework */; };
@@ -90,7 +89,6 @@
 		03B62FBC18DAD8C50032590F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		03B62FBD18DAD8C50032590F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		03B62FC018DAD8C50032590F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
-		03B62FC318DAD8C50032590F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		03B62FC818DAD8C50032590F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		03B62FCE18DAD8C50032590F /* WindAlertTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WindAlertTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		03B62FCF18DAD8C50032590F /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -280,7 +278,6 @@
 			isa = PBXGroup;
 			children = (
 				03B62FBF18DAD8C50032590F /* Main_iPhone.storyboard */,
-				03B62FC218DAD8C50032590F /* Main_iPad.storyboard */,
 				039A3FA918DDA6C40075EFE1 /* WindView.h */,
 				039A3FAA18DDA6C40075EFE1 /* WindView.m */,
 				039A3FAC18DDA6E30075EFE1 /* WindView.xib */,
@@ -383,7 +380,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03B62FC418DAD8C50032590F /* Main_iPad.storyboard in Resources */,
 				03F1914518DED04700722679 /* WindDirectionSpeedUnknownSmall@2x.png in Resources */,
 				03F1913D18DDF69C00722679 /* HourlyWindView.xib in Resources */,
 				039A3FAD18DDA6E30075EFE1 /* WindView.xib in Resources */,
@@ -474,14 +470,6 @@
 				03B62FC018DAD8C50032590F /* Base */,
 			);
 			name = Main_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		03B62FC218DAD8C50032590F /* Main_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				03B62FC318DAD8C50032590F /* Base */,
-			);
-			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
 		};
 		03B62FD818DAD8C50032590F /* InfoPlist.strings */ = {
@@ -575,7 +563,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WindAlert/WindAlert-Prefix.pch";
 				INFOPLIST_FILE = "WindAlert/WindAlert-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -588,7 +578,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WindAlert/WindAlert-Prefix.pch";
 				INFOPLIST_FILE = "WindAlert/WindAlert-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
