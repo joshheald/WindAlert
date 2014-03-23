@@ -37,9 +37,6 @@
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
     [self updateDayForecasts];
 }
 
@@ -56,30 +53,6 @@
         [dayForecasts addObject:[DayForecasts dayForecastsWithCityID:[self.city valueForKey:@"cityID"] forDate:date]];
     }
     self.dayForecasts = dayForecasts;
-}
-
-#define KEY_FOR_DAY_FORECAST @"dayForecast"
-- (void)viewDidAppear:(BOOL)animated
-{
-    NSIndexSet *allIndexes = [self.dayForecasts indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
-        return YES;
-    }];
-    
-    [self.dayForecasts addObserver:self toObjectsAtIndexes:allIndexes forKeyPath:KEY_FOR_DAY_FORECAST options:0 context:NULL];
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath
-                      ofObject:(id)object
-                        change:(NSDictionary *)change
-                       context:(void *)context
-{
-    if ([keyPath isEqualToString:KEY_FOR_DAY_FORECAST]) {
-        //object contains the forecast we need to reload
-        NSIndexPath *updatedForecastIndexPath = [NSIndexPath indexPathForRow:[self.dayForecasts indexOfObject:object] inSection:0];
-        [self.tableView beginUpdates];
-        [self.tableView reloadRowsAtIndexPaths:@[updatedForecastIndexPath] withRowAnimation:UITableViewRowAnimationNone];
-        [self.tableView endUpdates];
-    }
 }
 
 - (void)setCity:(NSDictionary *)city
@@ -116,7 +89,6 @@
     [cell resetForecasts];
     
     cell.forecasts = self.dayForecasts[indexPath.row];
-    
     if ([indexPath compare:self.indexPathOfPreviousSelection] == NSOrderedSame)
     {
         [cell showHourlyForecasts:YES];
@@ -127,17 +99,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSMutableArray *rowsToReload = [NSMutableArray arrayWithObject:indexPath];
-    if (self.indexPathOfPreviousSelection &&
-        [indexPath compare:self.indexPathOfPreviousSelection] != NSOrderedSame) {
+    if ([self.indexPathOfPreviousSelection compare:indexPath] != NSOrderedSame) {
         [rowsToReload addObject:self.indexPathOfPreviousSelection];
     }
     
-    [tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationAutomatic];
-    
-    [(ForecastsForDayTableViewCell *)[self.tableView cellForRowAtIndexPath:self.indexPathOfPreviousSelection] showHourlyForecasts:NO];
-    [(ForecastsForDayTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath] showHourlyForecasts:YES];
-    
     self.indexPathOfPreviousSelection = indexPath;
+    
+    [tableView beginUpdates];
+    [tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationAutomatic];
+    [tableView endUpdates];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -147,55 +117,5 @@
     }
     return 51;
 }
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

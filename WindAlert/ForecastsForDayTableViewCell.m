@@ -39,12 +39,24 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
+    /*if (selected) {
+        [self showHourlyForecasts:YES];
+    }*/
 }
 
+#define KEY_FOR_DAY_FORECAST @"dayForecast"
 - (void)setForecasts:(DayForecasts *)dayForecasts
 {
     _forecasts = dayForecasts;
     [self updateUI];
+    [dayForecasts addObserver:self forKeyPath:KEY_FOR_DAY_FORECAST options:0 context:NULL];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:KEY_FOR_DAY_FORECAST]) {
+        [self updateUI];
+    }
 }
 
 - (void)updateUI
