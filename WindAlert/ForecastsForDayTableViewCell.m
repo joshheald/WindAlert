@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet WindView *wind;
 @property (strong, nonatomic) IBOutletCollection(HourlyWindView) NSArray *hourlyWindViews;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *noForecastsLabel;
 
 @end
 
@@ -81,6 +82,11 @@
         HourlyWindView *hourlyWindView = obj;
         [hourlyWindView setHidden:!show];
     }];
+    if ([self.forecasts.threeHourlyForecasts count] > 0) {
+        [self.noForecastsLabel setHidden:YES];
+    } else {
+        [self.noForecastsLabel setHidden:!show];
+    }
 }
 
 - (void)resetForecasts
