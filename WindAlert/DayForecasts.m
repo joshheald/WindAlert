@@ -61,7 +61,47 @@
     [OpenWeatherFetcher threeHourlyForecastWindDataForCityWithID:self.cityID
                                                           onDate:self.forecastDate
                                            withCompletionHandler:^(NSArray *threeHourlyForecasts) {
-                                               weakSelf.threeHourlyForecasts = threeHourlyForecasts;
+                                               if ([threeHourlyForecasts count] == 8) {
+                                                   weakSelf.threeHourlyForecasts = threeHourlyForecasts;
+                                               } else if ([threeHourlyForecasts count] > 0) {
+                                                   // pad at the beginnning or end
+                                                   // determine the time of the first available forecast
+                                                   NSDate *forecastTime = [[threeHourlyForecasts firstObject] valueForKeyPath:@"datetime"];
+                                                   
+                                                   NSCalendar *calendar = [NSCalendar currentCalendar];
+                                                   NSDateComponents *components = [calendar components:(NSDayCalendarUnit |
+                                                                                                        NSMonthCalendarUnit |
+                                                                                                        NSYearCalendarUnit)
+                                                                                              fromDate:self.forecastDate];
+                                                   
+                                                   [components setHour:0];
+                                                   [components setMinute:0];
+                                                   [components setSecond:0];
+                                                   
+                                                   NSDate *midnight = [calendar dateFromComponents: components];
+                                                   
+                                                   NSMutableArray *threeHourlyForecastsForAllDay = [threeHourlyForecasts mutableCopy];
+                                                   //add 8 - numberOfForecasts to the array
+                                                   NSInteger indexToAddAt;
+                                                   if ([forecastTime compare:midnight] == NSOrderedDescending) {
+                                                       //add to the start
+                                                       indexToAddAt = 0;
+                                                   } else {
+                                                       //add to the end of the array
+                                                       indexToAddAt = [threeHourlyForecasts count];
+                                                   }
+                                                   
+                                                   NSInteger forecastsToAdd = 8 - [threeHourlyForecasts count];
+                                                   for (NSInteger i = forecastsToAdd-1; i >= 0; i--) {
+                                                       [components setHour:(indexToAddAt+i) * 3];
+                                                       NSDate *addedForecastTime = [calendar dateFromComponents:components];
+                                                       [threeHourlyForecastsForAllDay insertObject:@{@"datetime": addedForecastTime,
+                                                                                                     @"wind":@{}}
+                                                                                           atIndex:indexToAddAt];
+                                                   }
+                                                   
+                                                   weakSelf.threeHourlyForecasts = threeHourlyForecastsForAllDay;
+                                               }
                                            }];
 }
 
