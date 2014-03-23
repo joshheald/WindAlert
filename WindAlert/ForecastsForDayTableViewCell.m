@@ -27,7 +27,6 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         [self updateUI];
-        [self showHourlyForecasts:NO];
     }
     return self;
 }
@@ -35,7 +34,6 @@
 - (void)awakeFromNib
 {
     [self updateUI];
-    [self showHourlyForecasts:NO];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -47,7 +45,6 @@
 {
     _forecasts = dayForecasts;
     [self updateUI];
-    [self showHourlyForecasts:NO];
 }
 
 - (void)updateUI
@@ -65,7 +62,6 @@
 - (void)showHourlyForecasts:(BOOL)show
 {
     if ([self.forecasts.threeHourlyForecasts count] > 0) {
-        [self.extendedCellView setHidden:!show];
         if (show) {
             for (NSInteger i = 0; i < [self.forecasts.threeHourlyForecasts count]; i++) {
                 //Add an HourlyWindView to the contentView and the collection
@@ -84,11 +80,11 @@
                 
                 [self.extendedCellView addSubview:newView];
             }
-            [self updateUI];
         } else {
             [self.extendedCellView.subviews valueForKey:@"removeFromSuperview"];
         }
         
+        [self.extendedCellView setHidden:!show];
         [self.noForecastsLabel setHidden:YES];
     } else {
         [self.noForecastsLabel setHidden:!show];
@@ -100,8 +96,7 @@
 {
     self.dateLabel.text = nil;
     [self.wind reset];
-    
-    [self.extendedCellView.subviews valueForKey:@"removeFromSuperview"];
+    [self showHourlyForecasts:NO];
 }
 
 @end

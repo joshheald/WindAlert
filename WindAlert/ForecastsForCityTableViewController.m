@@ -117,6 +117,11 @@
     
     cell.forecasts = self.dayForecasts[indexPath.row];
     
+    if ([indexPath compare:self.indexPathOfPreviousSelection] == NSOrderedSame)
+    {
+        [cell showHourlyForecasts:YES];
+    }
+    
     return cell;
 }
 
