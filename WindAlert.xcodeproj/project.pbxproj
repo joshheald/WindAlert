@@ -11,7 +11,6 @@
 		039A3FA818DD85940075EFE1 /* ForecastsForCityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 039A3FA718DD85940075EFE1 /* ForecastsForCityTableViewController.m */; };
 		039A3FAB18DDA6C40075EFE1 /* WindView.m in Sources */ = {isa = PBXBuildFile; fileRef = 039A3FAA18DDA6C40075EFE1 /* WindView.m */; };
 		039A3FAD18DDA6E30075EFE1 /* WindView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 039A3FAC18DDA6E30075EFE1 /* WindView.xib */; };
-		039A3FB318DDAA3B0075EFE1 /* WindViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 039A3FB218DDAA3B0075EFE1 /* WindViewTests.m */; };
 		039A3FB618DDB0B70075EFE1 /* CityCurrentWeatherTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 039A3FB518DDB0B70075EFE1 /* CityCurrentWeatherTableViewCell.m */; };
 		039A3FB918DDBBE10075EFE1 /* WindDirectionSpeed.png in Resources */ = {isa = PBXBuildFile; fileRef = 039A3FB718DDBBE00075EFE1 /* WindDirectionSpeed.png */; };
 		039A3FBA18DDBBE10075EFE1 /* WindDirectionSpeed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 039A3FB818DDBBE00075EFE1 /* WindDirectionSpeed@2x.png */; };
@@ -48,6 +47,11 @@
 		03B6301718DD7AEF0032590F /* DayForecasts.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B6301618DD7AEF0032590F /* DayForecasts.m */; };
 		03F1913B18DDF68700722679 /* HourlyWindView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F1913A18DDF68700722679 /* HourlyWindView.m */; };
 		03F1913D18DDF69C00722679 /* HourlyWindView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03F1913C18DDF69C00722679 /* HourlyWindView.xib */; };
+		03F1914218DED04700722679 /* WindDirectionSpeedSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F1913E18DED04700722679 /* WindDirectionSpeedSmall.png */; };
+		03F1914318DED04700722679 /* WindDirectionSpeedSmall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F1913F18DED04700722679 /* WindDirectionSpeedSmall@2x.png */; };
+		03F1914418DED04700722679 /* WindDirectionSpeedUnknownSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F1914018DED04700722679 /* WindDirectionSpeedUnknownSmall.png */; };
+		03F1914518DED04700722679 /* WindDirectionSpeedUnknownSmall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03F1914118DED04700722679 /* WindDirectionSpeedUnknownSmall@2x.png */; };
+		03F1914718DED0D000722679 /* WindViewSmall.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03F1914618DED0D000722679 /* WindViewSmall.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,7 +71,6 @@
 		039A3FA918DDA6C40075EFE1 /* WindView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindView.h; sourceTree = "<group>"; };
 		039A3FAA18DDA6C40075EFE1 /* WindView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WindView.m; sourceTree = "<group>"; };
 		039A3FAC18DDA6E30075EFE1 /* WindView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WindView.xib; sourceTree = "<group>"; };
-		039A3FB218DDAA3B0075EFE1 /* WindViewTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WindViewTests.m; sourceTree = "<group>"; };
 		039A3FB418DDB0B70075EFE1 /* CityCurrentWeatherTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityCurrentWeatherTableViewCell.h; sourceTree = "<group>"; };
 		039A3FB518DDB0B70075EFE1 /* CityCurrentWeatherTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityCurrentWeatherTableViewCell.m; sourceTree = "<group>"; };
 		039A3FB718DDBBE00075EFE1 /* WindDirectionSpeed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WindDirectionSpeed.png; sourceTree = "<group>"; };
@@ -118,6 +121,11 @@
 		03F1913918DDF68700722679 /* HourlyWindView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HourlyWindView.h; sourceTree = "<group>"; };
 		03F1913A18DDF68700722679 /* HourlyWindView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HourlyWindView.m; sourceTree = "<group>"; };
 		03F1913C18DDF69C00722679 /* HourlyWindView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HourlyWindView.xib; sourceTree = "<group>"; };
+		03F1913E18DED04700722679 /* WindDirectionSpeedSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WindDirectionSpeedSmall.png; sourceTree = "<group>"; };
+		03F1913F18DED04700722679 /* WindDirectionSpeedSmall@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WindDirectionSpeedSmall@2x.png"; sourceTree = "<group>"; };
+		03F1914018DED04700722679 /* WindDirectionSpeedUnknownSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WindDirectionSpeedUnknownSmall.png; sourceTree = "<group>"; };
+		03F1914118DED04700722679 /* WindDirectionSpeedUnknownSmall@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WindDirectionSpeedUnknownSmall@2x.png"; sourceTree = "<group>"; };
+		03F1914618DED0D000722679 /* WindViewSmall.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WindViewSmall.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +208,10 @@
 				039A3FB818DDBBE00075EFE1 /* WindDirectionSpeed@2x.png */,
 				039A3FBB18DDBEA50075EFE1 /* WindDirectionSpeedUnknown.png */,
 				039A3FBC18DDBEA50075EFE1 /* WindDirectionSpeedUnknown@2x.png */,
+				03F1913E18DED04700722679 /* WindDirectionSpeedSmall.png */,
+				03F1913F18DED04700722679 /* WindDirectionSpeedSmall@2x.png */,
+				03F1914018DED04700722679 /* WindDirectionSpeedUnknownSmall.png */,
+				03F1914118DED04700722679 /* WindDirectionSpeedUnknownSmall@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -212,7 +224,6 @@
 				03B62FF418DB03460032590F /* OpenWeatherFetcherHelperTests.m */,
 				03B6301318DC86E00032590F /* CityTests.m */,
 				039A3FA418DD7B790075EFE1 /* DayForecastsTests.m */,
-				039A3FB218DDAA3B0075EFE1 /* WindViewTests.m */,
 				03B62FEA18DAE6EE0032590F /* Mock Objects */,
 				03B62FD618DAD8C50032590F /* Supporting Files */,
 			);
@@ -273,6 +284,7 @@
 				039A3FA918DDA6C40075EFE1 /* WindView.h */,
 				039A3FAA18DDA6C40075EFE1 /* WindView.m */,
 				039A3FAC18DDA6E30075EFE1 /* WindView.xib */,
+				03F1914618DED0D000722679 /* WindViewSmall.xib */,
 				039A3FB418DDB0B70075EFE1 /* CityCurrentWeatherTableViewCell.h */,
 				039A3FB518DDB0B70075EFE1 /* CityCurrentWeatherTableViewCell.m */,
 				039A3FBF18DDE01D0075EFE1 /* ForecastsForDayTableViewCell.h */,
@@ -372,12 +384,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				03B62FC418DAD8C50032590F /* Main_iPad.storyboard in Resources */,
+				03F1914518DED04700722679 /* WindDirectionSpeedUnknownSmall@2x.png in Resources */,
 				03F1913D18DDF69C00722679 /* HourlyWindView.xib in Resources */,
 				039A3FAD18DDA6E30075EFE1 /* WindView.xib in Resources */,
 				039A3FBE18DDBEA50075EFE1 /* WindDirectionSpeedUnknown@2x.png in Resources */,
+				03F1914718DED0D000722679 /* WindViewSmall.xib in Resources */,
 				03B62FC918DAD8C50032590F /* Images.xcassets in Resources */,
+				03F1914418DED04700722679 /* WindDirectionSpeedUnknownSmall.png in Resources */,
+				03F1914218DED04700722679 /* WindDirectionSpeedSmall.png in Resources */,
 				039A3FB918DDBBE10075EFE1 /* WindDirectionSpeed.png in Resources */,
 				039A3FBD18DDBEA50075EFE1 /* WindDirectionSpeedUnknown.png in Resources */,
+				03F1914318DED04700722679 /* WindDirectionSpeedSmall@2x.png in Resources */,
 				03B62FC118DAD8C50032590F /* Main_iPhone.storyboard in Resources */,
 				039A3FBA18DDBBE10075EFE1 /* WindDirectionSpeed@2x.png in Resources */,
 				03B62FB818DAD8C50032590F /* InfoPlist.strings in Resources */,
@@ -424,7 +441,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				039A3FB318DDAA3B0075EFE1 /* WindViewTests.m in Sources */,
 				03B62FE918DAE65D0032590F /* OpenWeatherFetcherURLsTests.m in Sources */,
 				03B62FF518DB03460032590F /* OpenWeatherFetcherHelperTests.m in Sources */,
 				03B6301418DC86E00032590F /* CityTests.m in Sources */,

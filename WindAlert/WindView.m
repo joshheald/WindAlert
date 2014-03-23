@@ -14,6 +14,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *directionImageView;
 @property (weak, nonatomic) IBOutlet UILabel *speedLabel;
 
+@property (strong, nonatomic) UIImage *unknownImage;
+@property (strong, nonatomic) UIImage *directionImage;
+
 @end
 
 @implementation WindView
@@ -28,10 +31,34 @@
 }
 
 - (void)awakeFromNib {
-    [[NSBundle mainBundle] loadNibNamed:@"WindView" owner:self options:nil];
+    NSString *nibName = @"WindView";
+    if ([self isUsingSmallView]) {
+        nibName = @"WindViewSmall";
+    }
+    
+    [self setImages];
+    
+    [[NSBundle mainBundle] loadNibNamed:nibName owner:self options:nil];
     [self addSubview: self.contentView];
     
     [self.directionImageView setTranslatesAutoresizingMaskIntoConstraints:YES];
+}
+
+- (BOOL)isUsingSmallView
+{
+    CGSize smallSize = CGSizeMake(36, 36);
+    return (self.frame.size.width == smallSize.width && self.frame.size.height == smallSize.width);
+}
+
+- (void)setImages
+{
+    if ([self isUsingSmallView]) {
+        self.unknownImage = [UIImage imageNamed:@"WindDirectionSpeedUnknownSmall"];
+        self.directionImage = [UIImage imageNamed:@"WindDirectionSpeedSmall"];
+    } else {
+        self.unknownImage = [UIImage imageNamed:@"WindDirectionSpeedUnknown"];
+        self.directionImage = [UIImage imageNamed:@"WindDirectionSpeed"];
+    }
 }
 
 #define CARDINAL_DIRECTION_TO_RADIANS(direction) ((direction * 22.5) / 180.0 * M_PI)
@@ -39,7 +66,7 @@
 {
     _direction = direction;
     
-    self.directionImageView.image = [UIImage imageNamed:@"WindDirectionSpeed"];
+    self.directionImageView.image = self.directionImage;
     
     double rads = CARDINAL_DIRECTION_TO_RADIANS(direction);
     self.directionImageView.transform = CGAffineTransformRotate(CGAffineTransformIdentity, rads);
