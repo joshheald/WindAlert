@@ -78,8 +78,20 @@
 - (void)showHourlyForecasts:(BOOL)show
 {
     [self.hourlyWindViews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [(HourlyWindView *)obj setHidden:!show];
+        HourlyWindView *hourlyWindView = obj;
+        [hourlyWindView setHidden:!show];
     }];
+}
+
+- (void)resetForecasts
+{
+    self.dateLabel.text = nil;
+    [self.wind reset];
+    
+    for (HourlyWindView *hourlyWindView in self.hourlyWindViews) {
+        [hourlyWindView.windView reset];
+        hourlyWindView.timeLabel.text = nil;
+    }
 }
 
 @end

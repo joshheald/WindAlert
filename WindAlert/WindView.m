@@ -46,8 +46,8 @@
 
 - (BOOL)isUsingSmallView
 {
-    CGSize smallSize = CGSizeMake(36, 36);
-    return (self.frame.size.width == smallSize.width && self.frame.size.height == smallSize.width);
+    CGSize fullSize = CGSizeMake(45, 45);
+    return (self.frame.size.width < fullSize.width || self.frame.size.height < fullSize.width);
 }
 
 - (void)setImages
@@ -74,7 +74,21 @@
 
 - (void)setSpeed:(NSNumber *)speed
 {
-    self.speedLabel.text = [NSString stringWithFormat:@"%i", [speed integerValue]];
+    if ([self isUsingSmallView]) {
+        [self setHidden:!speed];
+    }
+    if (speed) {
+        self.speedLabel.text = [NSString stringWithFormat:@"%i", [speed integerValue]];
+    } else {
+        self.speedLabel.text = @"?";
+    }
+}
+
+- (void)reset
+{
+    self.direction = CardinalDirectionNorth;
+    self.speed = nil;
+    self.directionImageView.image = self.unknownImage;
 }
 
 /*

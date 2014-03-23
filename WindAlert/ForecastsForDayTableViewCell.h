@@ -16,4 +16,6 @@
 
 - (void)showHourlyForecasts:(BOOL)show;
 
+- (void)resetForecasts;
+
 @end

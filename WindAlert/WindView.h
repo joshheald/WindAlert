@@ -13,4 +13,6 @@
 @property (strong, nonatomic) NSNumber *speed;
 @property (nonatomic) CardinalDirections direction;
 
+- (void)reset;
+
 @end

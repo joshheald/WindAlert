@@ -90,7 +90,8 @@
 {
     ForecastsForDayTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Forecast Day Cell" forIndexPath:indexPath];
     
-    // Configure the cell...
+    [cell resetForecasts];
+    
     cell.forecasts = self.dayForecasts[indexPath.row];
     
     return cell;
