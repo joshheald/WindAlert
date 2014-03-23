@@ -55,8 +55,31 @@
     for (NSDate *date in datesForForecasts) {
         [dayForecasts addObject:[DayForecasts dayForecastsWithCityID:[self.city valueForKey:@"cityID"] forDate:date]];
     }
-    
     self.dayForecasts = dayForecasts;
+}
+
+#define KEY_FOR_DAY_FORECAST @"dayForecast"
+- (void)viewDidAppear:(BOOL)animated
+{
+    NSIndexSet *allIndexes = [self.dayForecasts indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+        return YES;
+    }];
+    
+    [self.dayForecasts addObserver:self toObjectsAtIndexes:allIndexes forKeyPath:KEY_FOR_DAY_FORECAST options:0 context:NULL];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context
+{
+    if ([keyPath isEqualToString:KEY_FOR_DAY_FORECAST]) {
+        //object contains the forecast we need to reload
+        NSIndexPath *updatedForecastIndexPath = [NSIndexPath indexPathForRow:[self.dayForecasts indexOfObject:object] inSection:0];
+        [self.tableView beginUpdates];
+        [self.tableView reloadRowsAtIndexPaths:@[updatedForecastIndexPath] withRowAnimation:UITableViewRowAnimationNone];
+        [self.tableView endUpdates];
+    }
 }
 
 - (void)setCity:(NSDictionary *)city
@@ -109,6 +132,11 @@
     [(ForecastsForDayTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath] showHourlyForecasts:YES];
     
     self.indexPathOfPreviousSelection = indexPath;
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [(ForecastsForDayTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath] showHourlyForecasts:NO];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -28,8 +28,6 @@
 - (void)awakeFromNib {
     [[NSBundle mainBundle] loadNibNamed:@"HourlyWindView" owner:self options:nil];
     [self addSubview: self.contentView];
-    
-    //[self.directionImageView setTranslatesAutoresizingMaskIntoConstraints:YES];
 }
 
 /*

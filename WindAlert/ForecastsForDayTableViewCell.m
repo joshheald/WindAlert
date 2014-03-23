@@ -78,11 +78,20 @@
 
 - (void)showHourlyForecasts:(BOOL)show
 {
-    [self.hourlyWindViews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        HourlyWindView *hourlyWindView = obj;
-        [hourlyWindView setHidden:!show];
-    }];
     if ([self.forecasts.threeHourlyForecasts count] > 0) {
+        if (show) {
+            for (NSInteger i = 0; i < [self.forecasts.threeHourlyForecasts count]; i++) {
+                //Add an HourlyWindView to the contentView and the collection
+                CGRect frame = CGRectMake(i * 38 + 2, 51, 36, 61);
+                HourlyWindView *newView = [[HourlyWindView alloc] initWithFrame:frame];
+                
+                [self.contentView addSubview:newView];
+                self.hourlyWindViews = [self.hourlyWindViews arrayByAddingObject:newView];
+            }
+        } else {
+            [self.hourlyWindViews valueForKey:@"removeFromSuperview"];
+        }
+        
         [self.noForecastsLabel setHidden:YES];
     } else {
         [self.noForecastsLabel setHidden:!show];
@@ -94,10 +103,7 @@
     self.dateLabel.text = nil;
     [self.wind reset];
     
-    for (HourlyWindView *hourlyWindView in self.hourlyWindViews) {
-        [hourlyWindView.windView reset];
-        hourlyWindView.timeLabel.text = nil;
-    }
+    [self.hourlyWindViews valueForKey:@"removeFromSuperview"];
 }
 
 @end

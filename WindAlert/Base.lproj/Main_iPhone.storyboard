@@ -95,46 +95,6 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m8z-fs-1it" customClass="HourlyWindView">
-                                            <rect key="frame" x="0.0" y="50" width="40" height="61"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                        </view>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LB7-aA-IdA" customClass="HourlyWindView">
-                                            <rect key="frame" x="40" y="50" width="40" height="61"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </view>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0mF-Te-SjT" customClass="HourlyWindView">
-                                            <rect key="frame" x="80" y="50" width="40" height="61"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                        </view>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jyg-NJ-diV" customClass="HourlyWindView">
-                                            <rect key="frame" x="120" y="50" width="40" height="61"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </view>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qCI-Ss-nbD" customClass="HourlyWindView">
-                                            <rect key="frame" x="160" y="50" width="40" height="61"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                        </view>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lSO-wm-W46" customClass="HourlyWindView">
-                                            <rect key="frame" x="200" y="50" width="40" height="61"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </view>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GZ8-ou-zBP" customClass="HourlyWindView">
-                                            <rect key="frame" x="240" y="50" width="40" height="61"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                        </view>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Oqh-N8-8hR" customClass="HourlyWindView">
-                                            <rect key="frame" x="280" y="50" width="40" height="61"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </view>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sorry, no forecasts for this date yet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zfy-SA-TUO">
                                             <rect key="frame" x="20" y="74" width="280" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -154,14 +114,6 @@
                                     <outlet property="dateLabel" destination="Z7x-fy-6x1" id="3N2-eN-Z0G"/>
                                     <outlet property="noForecastsLabel" destination="Zfy-SA-TUO" id="ih8-zG-czo"/>
                                     <outlet property="wind" destination="Rbd-oY-Pdx" id="QbN-g1-0cc"/>
-                                    <outletCollection property="hourlyWindViews" destination="m8z-fs-1it" id="dfK-Fc-kRP"/>
-                                    <outletCollection property="hourlyWindViews" destination="LB7-aA-IdA" id="yRZ-MU-MSY"/>
-                                    <outletCollection property="hourlyWindViews" destination="0mF-Te-SjT" id="xwx-hQ-pTA"/>
-                                    <outletCollection property="hourlyWindViews" destination="jyg-NJ-diV" id="4IF-fF-PY1"/>
-                                    <outletCollection property="hourlyWindViews" destination="qCI-Ss-nbD" id="rA8-4I-p2C"/>
-                                    <outletCollection property="hourlyWindViews" destination="lSO-wm-W46" id="WOX-WS-xxl"/>
-                                    <outletCollection property="hourlyWindViews" destination="GZ8-ou-zBP" id="gLo-y4-euN"/>
-                                    <outletCollection property="hourlyWindViews" destination="Oqh-N8-8hR" id="TLG-Y5-9yi"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
