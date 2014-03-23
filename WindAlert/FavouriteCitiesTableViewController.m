@@ -39,7 +39,32 @@
         [self.favouriteCities addObserver:self toObjectsAtIndexes:allIndexes forKeyPath:@"currentWeather" options:0 context:NULL];
         [self.tableView reloadData];
     }
-    //Update NSUserDefaults here (or in the setter?)
+}
+
+#define FAVOURITE_CITIES_USER_DEFAULTS_KEY @"WindAlertFavouriteCities"
+- (void)setFavouriteCities:(NSArray *)favouriteCities
+{
+    _favouriteCities = favouriteCities;
+    [self saveCitiesToDefaults:favouriteCities];
+}
+
+- (void)saveCitiesToDefaults:(NSArray *)cities
+{
+    NSArray *dictionaryArray = [cities valueForKey:@"createCityDictionary"];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:dictionaryArray forKey:FAVOURITE_CITIES_USER_DEFAULTS_KEY];
+    [defaults synchronize];
+}
+
+- (void)loadCitiesFromDefaults
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSArray *cities = [defaults objectForKey:FAVOURITE_CITIES_USER_DEFAULTS_KEY];
+    
+    for (NSDictionary *cityDictionary in cities) {
+        [self addCity:cityDictionary];
+    }
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -61,6 +86,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.title = @"Favourite Locations";
+    [self loadCitiesFromDefaults];
 }
 
 - (void)didReceiveMemoryWarning

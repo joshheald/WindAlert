@@ -17,5 +17,5 @@
 @property (readonly, nonatomic) NSDictionary *currentWeather;
 
 + (City *)cityWithCityDictionary:(NSDictionary *)cityDictionary;
-
+- (NSDictionary *)createCityDictionary;
 @end

@@ -40,4 +40,17 @@
     XCTAssertEqual([cityDictionary valueForKeyPath:@"country"], result.country, @"The city should have the country passed in the dictionary");
 }
 
+- (void)testICanGetACityDictionaryFromACity
+{
+    NSDictionary *cityDictionary = @{@"cityID": @2643743,
+                                     @"name": @"London",
+                                     @"country": @"GB"};
+    
+    City *city = [City cityWithCityDictionary:cityDictionary];
+    
+    NSDictionary *result = [city createCityDictionary];
+    
+    XCTAssertEqualObjects(cityDictionary, result, @"The city dictionary created should match the one used to create the city");
+}
+
 @end

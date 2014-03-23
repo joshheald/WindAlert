@@ -44,6 +44,13 @@
     return self;
 }
 
+- (NSDictionary *)createCityDictionary
+{
+    return @{KEY_FOR_CITY_NAME: self.name,
+             KEY_FOR_CITY_ID: self.cityID,
+             KEY_FOR_COUNTRY_NAME: self.country};
+}
+
 - (void)updateCurrentWeather
 {
     __weak City *weakSelf = self;
