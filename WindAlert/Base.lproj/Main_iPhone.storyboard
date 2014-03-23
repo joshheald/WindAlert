@@ -95,7 +95,16 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sorry, no forecasts for this date yet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zfy-SA-TUO">
+                                        <view hidden="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z0z-e6-Eh0">
+                                            <rect key="frame" x="6" y="55" width="308" height="56"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="56" id="Gf7-Pw-qRa"/>
+                                                <constraint firstAttribute="width" constant="308" id="myc-T6-wd4"/>
+                                            </constraints>
+                                        </view>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sorry, no forecasts for this date yet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zfy-SA-TUO">
                                             <rect key="frame" x="20" y="74" width="280" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -104,14 +113,12 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="Zfy-SA-TUO" secondAttribute="bottom" constant="16" id="S1e-Zw-tax"/>
-                                        <constraint firstAttribute="trailing" secondItem="Zfy-SA-TUO" secondAttribute="trailing" constant="20" symbolic="YES" id="Xb4-Gx-k6q"/>
-                                        <constraint firstItem="Zfy-SA-TUO" firstAttribute="leading" secondItem="Uyq-Ld-1zY" secondAttribute="leading" constant="20" symbolic="YES" id="aKx-k3-uPO"/>
-                                        <constraint firstAttribute="centerY" secondItem="Zfy-SA-TUO" secondAttribute="centerY" constant="-29" id="u7R-IV-8Cd"/>
+                                        <constraint firstAttribute="centerX" secondItem="z0z-e6-Eh0" secondAttribute="centerX" id="CB4-Sv-f5k"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="dateLabel" destination="Z7x-fy-6x1" id="3N2-eN-Z0G"/>
+                                    <outlet property="extendedCellView" destination="z0z-e6-Eh0" id="JbS-QQ-RIY"/>
                                     <outlet property="noForecastsLabel" destination="Zfy-SA-TUO" id="ih8-zG-czo"/>
                                     <outlet property="wind" destination="Rbd-oY-Pdx" id="QbN-g1-0cc"/>
                                 </connections>

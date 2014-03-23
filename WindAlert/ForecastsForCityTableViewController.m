@@ -129,14 +129,10 @@
     
     [tableView reloadRowsAtIndexPaths:rowsToReload withRowAnimation:UITableViewRowAnimationAutomatic];
     
+    [(ForecastsForDayTableViewCell *)[self.tableView cellForRowAtIndexPath:self.indexPathOfPreviousSelection] showHourlyForecasts:NO];
     [(ForecastsForDayTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath] showHourlyForecasts:YES];
     
     self.indexPathOfPreviousSelection = indexPath;
-}
-
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [(ForecastsForDayTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath] showHourlyForecasts:NO];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
