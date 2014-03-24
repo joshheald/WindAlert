@@ -19,17 +19,22 @@
 
 @implementation CitySearchTableViewController
 
+#define MINIMUM_API_SEARCH_STRING_LENGTH 3
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    [searchBar resignFirstResponder];
     if (searchBar.text) {
-        [self performSearchAndUpdateTableViewWithSearchString:searchBar.text];
+        if ([searchBar.text length] >= MINIMUM_API_SEARCH_STRING_LENGTH) {
+            [searchBar resignFirstResponder];
+            [self performSearchAndUpdateTableViewWithSearchString:searchBar.text];
+        } else {
+            [self indicateErrorForSearchBar:searchBar];
+        }
     }
 }
 
 - (void)performSearchAndUpdateTableViewWithSearchString:(NSString *)searchString
 {
-    if ([searchString length] >= 3) {
+    if ([searchString length] >= MINIMUM_API_SEARCH_STRING_LENGTH) {
         __weak CitySearchTableViewController *weakSelf = self;
         [OpenWeatherFetcher citiesForSearchString:searchString
                             withCompletionHandler:^(NSArray *cities) {
@@ -37,6 +42,19 @@
                                     weakSelf.searchResults = cities;
                                 });
                             }];
+    }
+}
+
+- (void)indicateErrorForSearchBar:(UISearchBar *)searchBar
+{
+    searchBar.barTintColor = [UIColor colorWithRed:255.0/255.0 green:0/255.0 blue:0/255.0 alpha:0.2];
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    if ([searchBar.text length] >= MINIMUM_API_SEARCH_STRING_LENGTH)
+    {
+        searchBar.barTintColor = nil;
     }
 }
 
