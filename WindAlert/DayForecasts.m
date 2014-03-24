@@ -16,18 +16,21 @@
 
 @property (strong, nonatomic) NSDictionary *dayForecast;
 @property (strong, nonatomic) NSArray *threeHourlyForecasts;
+@property (weak, nonatomic) id<DayForecastsDelegate> delegate;
 
 @end
 
 @implementation DayForecasts
 
-+ (DayForecasts *)dayForecastsWithCityID:(NSNumber *)cityID forDate:(NSDate *)forecastDate
++ (DayForecasts *)dayForecastsWithCityID:(NSNumber *)cityID forDate:(NSDate *)forecastDate notifyDelegateOfUpdates:(id<DayForecastsDelegate>) delegate
 {
     DayForecasts *dayForecasts;
     
     if (cityID && forecastDate) {
         dayForecasts = [[DayForecasts alloc] initWithCityID:cityID forDate:forecastDate];
     }
+    
+    dayForecasts.delegate = delegate;
     
     return dayForecasts;
 }
@@ -45,6 +48,12 @@
     return self;
 }
 
+- (void)refreshData
+{
+    [self updateDayForecast];
+    [self update3HourlyForecasts];
+}
+
 - (void)updateDayForecast
 {
     __weak DayForecasts *weakSelf = self;
@@ -52,6 +61,7 @@
                                                     onDate:self.forecastDate
                                      withCompletionHandler:^(NSDictionary *dailyForecast) {
                                          weakSelf.dayForecast = dailyForecast;
+                                         [weakSelf.delegate dayForecastsDidFinishUpdating:weakSelf];
                                      }];
 }
 

@@ -8,6 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+@class DayForecasts;
+
+@protocol DayForecastsDelegate
+
+- (void)dayForecastsDidFinishUpdating:(DayForecasts *)dayForecasts;
+
+@end
+
 @interface DayForecasts : NSObject
 
 @property (readonly, nonatomic) NSNumber *cityID;
@@ -15,6 +23,8 @@
 @property (readonly, nonatomic) NSDictionary *dayForecast;
 @property (readonly, nonatomic) NSArray *threeHourlyForecasts;
 
-+ (DayForecasts *)dayForecastsWithCityID:(NSNumber *)cityID forDate:(NSDate *)forecastDate;
++ (DayForecasts *)dayForecastsWithCityID:(NSNumber *)cityID forDate:(NSDate *)forecastDate notifyDelegateOfUpdates:(id<DayForecastsDelegate>) delegate;
+
+- (void)refreshData;
 
 @end

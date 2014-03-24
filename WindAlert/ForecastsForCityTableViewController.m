@@ -12,9 +12,10 @@
 #import "ForecastsForDayTableViewCell.h"
 #import "HourlyWindView.h"
 
-@interface ForecastsForCityTableViewController ()
+@interface ForecastsForCityTableViewController () <DayForecastsDelegate>
 
 @property (strong, nonatomic) NSArray *dayForecasts; //of DayForecasts
+@property (strong, nonatomic) NSArray *completedRefreshing; //of DayForecasts
 @property (strong, nonatomic) NSIndexPath *indexPathOfPreviousSelection;
 
 @end
@@ -37,11 +38,11 @@
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
-    [self updateDayForecasts];
+    [self createDayForecasts];
 }
 
 #define DAY_LENGTH 86400
-- (void)updateDayForecasts
+- (void)createDayForecasts
 {
     NSMutableArray *datesForForecasts = [[NSMutableArray alloc] init];
     for (NSInteger i = 0; i < MAX_DAILY_FORECAST_DAYS; i++) {
@@ -50,9 +51,49 @@
     
     NSMutableArray *dayForecasts = [[NSMutableArray alloc] initWithCapacity:[datesForForecasts count]];
     for (NSDate *date in datesForForecasts) {
-        [dayForecasts addObject:[DayForecasts dayForecastsWithCityID:[self.city valueForKey:@"cityID"] forDate:date]];
+        DayForecasts *forecast = [DayForecasts dayForecastsWithCityID:[self.city valueForKey:@"cityID"] forDate:date notifyDelegateOfUpdates:self];
+        [dayForecasts addObject:forecast];
     }
     self.dayForecasts = dayForecasts;
+}
+
+- (IBAction)refreshForecasts:(id)sender {
+    [self updateDayForecasts];
+}
+
+- (void)updateDayForecasts
+{
+    [self.refreshControl beginRefreshing];
+    //Clear out completedRefreshing - refreshing will end when all forecasts are added to completedRefreshing
+    self.completedRefreshing = [[NSArray alloc] init];
+    for (DayForecasts *dayForecasts in self.dayForecasts) {
+        [dayForecasts refreshData];
+    }
+}
+
+- (void)setCompletedRefreshing:(NSArray *)completedRefreshing
+{
+    _completedRefreshing = completedRefreshing;
+    [self addObserver:self forKeyPath:@"completedRefreshing" options:0 context:NULL];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"completedRefreshing"]) {
+        NSSet *allForecasts = [NSSet setWithArray:self.dayForecasts];
+        NSSet *refreshedForecasts = [NSSet setWithArray:self.completedRefreshing];
+        
+        if ([refreshedForecasts isEqualToSet:allForecasts]) {
+            [self.refreshControl endRefreshing];
+        }
+    }
+}
+
+- (void)dayForecastsDidFinishUpdating:(DayForecasts *)dayForecasts
+{
+    NSMutableArray *completedRefreshing = [self.completedRefreshing mutableCopy];
+    [completedRefreshing addObject:dayForecasts];
+    self.completedRefreshing = completedRefreshing;
 }
 
 - (void)setCity:(NSDictionary *)city
