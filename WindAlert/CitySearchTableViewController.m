@@ -43,7 +43,6 @@
 - (void)setSearchResults:(NSArray *)searchResults
 {
     [self.tableView beginUpdates];
-    
     NSMutableArray *cities = [_searchResults mutableCopy];
     
     //first remove search results not in the new set
@@ -77,7 +76,6 @@
     }];
     
     [self.tableView insertRowsAtIndexPaths:addedCityIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
-    
     [self.tableView endUpdates];
     //[self.tableView reloadData];
 }
@@ -104,6 +102,7 @@
     if (SYSTEM_VERSION_LESS_THAN(@"7_0")) {
         self.searchBar.tintColor = self.navigationController.navigationBar.tintColor;
     }
+    [self.searchBar becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning
@@ -134,6 +133,8 @@
     
     // Configure the cell...
     
+    
+    
     NSDictionary *city = self.searchResults[indexPath.row];
     cell.textLabel.text = [city valueForKeyPath:KEY_FOR_CITY_NAME];
     cell.detailTextLabel.text = [city valueForKeyPath:KEY_FOR_COUNTRY_NAME];
@@ -145,44 +146,6 @@
 {
     [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 
 #pragma mark - Navigation
@@ -196,12 +159,6 @@
             [(FavouriteCitiesTableViewController *)segue.destinationViewController addCity:city];
         }
     }
-    
-    /*if ([sender isKindOfClass:[NSDictionary class]]) {
-        if ([segue.destinationViewController isKindOfClass:[FavouriteCitiesTableViewController class]]) {
-            [(FavouriteCitiesTableViewController *)segue.destinationViewController addCity:sender];
-        }
-    }*/
 }
 
 @end

@@ -19,7 +19,8 @@
     NSURL *searchURL;
     
     if (name && ![name isEqualToString:@""]) {
-        searchURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/find?q=%@&type=like&cnt=20&mode=%@", OPENWEATHER_API_ADDRESS, name, OPENWEATHER_API_MODE]];
+        searchURL = [NSURL URLWithString:[[NSString stringWithFormat:@"%@/find?q=%@&type=like&cnt=20&mode=%@", OPENWEATHER_API_ADDRESS, name, OPENWEATHER_API_MODE]
+                                          stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     }
     
     return searchURL;

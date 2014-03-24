@@ -39,9 +39,6 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-    /*if (selected) {
-        [self showHourlyForecasts:YES];
-    }*/
 }
 
 #define KEY_FOR_DAY_FORECAST @"dayForecast"

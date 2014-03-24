@@ -35,6 +35,12 @@
     XCTAssertEqualObjects(expectedURL, [OpenWeatherFetcherURLs urlForCitySearchWithName:@"London"], @"The OpenWeatherFetcherURLs class should construct a URL for a search request for the passed city, to retrieve maximum 20 results");
 }
 
+- (void)testWhenIGetTheAPIURLToSearchForACityNameWithASpaceItIsEncodedCorrectly
+{
+    NSURL *expectedURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/find?q=New%%20York&type=like&cnt=20&mode=json", OPENWEATHER_API_ADDRESS]];
+    XCTAssertEqualObjects(expectedURL, [OpenWeatherFetcherURLs urlForCitySearchWithName:@"New York"], @"The OpenWeatherFetcherURLs class should construct a URL for a search request for the passed city, with the space encoded correctly.");
+}
+
 - (void)testWhenIGetTheAPIURLToSearchForACityWithoutPassingANameTheURLIsNotReturned
 {
     XCTAssertNil([OpenWeatherFetcherURLs urlForCitySearchWithName:nil], @"The OpenWeatherFetcherURLs class should return nil when no city name is supplied");
