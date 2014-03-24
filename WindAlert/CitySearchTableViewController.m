@@ -19,6 +19,30 @@
 
 @implementation CitySearchTableViewController
 
+- (id)initWithStyle:(UITableViewStyle)style
+{
+    self = [super initWithStyle:style];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.title = @"Add Location";
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.searchBar.delegate = self;
+    if (![self.searchBar respondsToSelector:@selector(barTintColor)]) {
+        self.searchBar.tintColor = self.navigationController.navigationBar.tintColor;
+    }
+    [self.searchBar becomeFirstResponder];
+}
+
 #define MINIMUM_API_SEARCH_STRING_LENGTH 3
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
@@ -47,86 +71,38 @@
 
 - (void)indicateErrorForSearchBar:(UISearchBar *)searchBar
 {
-    searchBar.barTintColor = [UIColor colorWithRed:255.0/255.0 green:0/255.0 blue:0/255.0 alpha:0.2];
+    UIColor *errorColour = [UIColor colorWithRed:255.0/255.0 green:0/255.0 blue:0/255.0 alpha:0.2];
+    
+    if ([searchBar respondsToSelector:@selector(barTintColor)]) {
+        searchBar.barTintColor = errorColour;
+    } else {
+        searchBar.tintColor = errorColour;
+    }
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
+    [self resetErrorForSearchBar:searchBar];
+}
+
+- (void)resetErrorForSearchBar:(UISearchBar *)searchBar
+{
     if ([searchBar.text length] >= MINIMUM_API_SEARCH_STRING_LENGTH)
     {
-        searchBar.barTintColor = nil;
+        if ([searchBar respondsToSelector:@selector(barTintColor)]) {
+            searchBar.barTintColor = nil;
+        } else {
+            searchBar.tintColor = self.navigationController.navigationBar.tintColor;
+        }
     }
 }
 
 - (void)setSearchResults:(NSArray *)searchResults
 {
-    [self.tableView beginUpdates];
-    NSMutableArray *cities = [_searchResults mutableCopy];
-    
-    //first remove search results not in the new set
-    NSIndexSet *removedCityIndexes = [cities indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
-        return ![searchResults containsObject:obj];
-    }];
-    [cities removeObjectsAtIndexes:removedCityIndexes];
-    _searchResults = cities;
-    
-    //then animate the deletions
-    NSMutableArray *removedCityIndexPaths = [[NSMutableArray alloc] init];
-    [removedCityIndexes enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
-        [removedCityIndexPaths addObject:[NSIndexPath indexPathForRow:idx inSection:0]];
-    }];
-    
-    [self.tableView deleteRowsAtIndexPaths:removedCityIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
-    
-    //now add search results which are in the new set
-    NSMutableArray *newCities = [searchResults mutableCopy];
-    [newCities removeObjectsInArray:_searchResults];
-    
     _searchResults = searchResults;
-    
-    //then animate the insertions
-    NSIndexSet *addedCityIndexes = [_searchResults indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
-        return [newCities containsObject:obj];
-    }];
-    NSMutableArray *addedCityIndexPaths = [[NSMutableArray alloc] init];
-    [addedCityIndexes enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
-        [addedCityIndexPaths addObject:[NSIndexPath indexPathForRow:idx inSection:0]];
-    }];
-    
-    [self.tableView insertRowsAtIndexPaths:addedCityIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView beginUpdates];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
     [self.tableView endUpdates];
-    //[self.tableView reloadData];
-}
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    self.title = @"Add Location";
-}
-
-#define SYSTEM_VERSION_LESS_THAN(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
-- (void)viewWillAppear:(BOOL)animated
-{
-    self.searchBar.delegate = self;
-    if (SYSTEM_VERSION_LESS_THAN(@"7_0")) {
-        self.searchBar.tintColor = self.navigationController.navigationBar.tintColor;
-    }
-    [self.searchBar becomeFirstResponder];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
@@ -148,10 +124,6 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Search City Cell"
                                                             forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    
     
     NSDictionary *city = self.searchResults[indexPath.row];
     cell.textLabel.text = [city valueForKeyPath:KEY_FOR_CITY_NAME];
