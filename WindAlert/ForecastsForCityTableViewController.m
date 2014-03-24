@@ -22,22 +22,8 @@
 
 @implementation ForecastsForCityTableViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (void)viewWillAppear:(BOOL)animated
 {
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
     [self createDayForecasts];
 }
 
@@ -57,6 +43,11 @@
     self.dayForecasts = dayForecasts;
     
     [self prepareForUpdate];
+    if (self.tableView.contentOffset.y == 0) {
+        [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^(void){
+            self.tableView.contentOffset = CGPointMake(0, -self.refreshControl.frame.size.height);
+        } completion:^(BOOL finished){}];
+    }
 }
 
 - (void)prepareForUpdate
@@ -76,7 +67,7 @@
 - (void)setCompletedRefreshing:(NSArray *)completedRefreshing
 {
     _completedRefreshing = completedRefreshing;
-    //[self addObserver:self forKeyPath:@"completedRefreshing" options:0 context:NULL];
+    
     NSSet *allForecasts = [NSSet setWithArray:self.dayForecasts];
     NSSet *refreshedForecasts = [NSSet setWithArray:self.completedRefreshing];
     
@@ -84,18 +75,6 @@
         [self.refreshControl endRefreshing];
     }
 }
-
-/*- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if ([keyPath isEqualToString:@"completedRefreshing"]) {
-        NSSet *allForecasts = [NSSet setWithArray:self.dayForecasts];
-        NSSet *refreshedForecasts = [NSSet setWithArray:self.completedRefreshing];
-        
-        if ([refreshedForecasts isEqualToSet:allForecasts]) {
-            [self.refreshControl endRefreshing];
-        }
-    }
-}*/
 
 - (void)dayForecastsDidFinishUpdating:(DayForecasts *)dayForecasts
 {
@@ -108,12 +87,6 @@
 {
     _city = city;
     self.title = [city valueForKey:@"name"];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source

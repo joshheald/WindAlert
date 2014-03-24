@@ -21,15 +21,6 @@
 
 @implementation WindView
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
-
 - (void)awakeFromNib {
     NSString *nibName = @"WindView";
     if ([self isUsingSmallView]) {
@@ -81,6 +72,7 @@
         self.speedLabel.text = [NSString stringWithFormat:@"%i", [speed integerValue]];
     } else {
         self.speedLabel.text = @"?";
+        self.directionImageView.image = self.unknownImage;
     }
 }
 
@@ -90,14 +82,5 @@
     self.speed = nil;
     self.directionImageView.image = self.unknownImage;
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end

@@ -22,31 +22,15 @@
 
 @implementation ForecastsForDayTableViewCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        [self updateUI];
-    }
-    return self;
-}
-
-- (void)awakeFromNib
-{
-    [self updateUI];
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-}
-
 #define KEY_FOR_DAY_FORECAST @"dayForecast"
 - (void)setForecasts:(DayForecasts *)dayForecasts
 {
+    [_forecasts removeObserver:self forKeyPath:KEY_FOR_DAY_FORECAST];
+    
     _forecasts = dayForecasts;
     [self updateUI];
-    [dayForecasts addObserver:self forKeyPath:KEY_FOR_DAY_FORECAST options:0 context:NULL];
+    
+    [self.forecasts addObserver:self forKeyPath:KEY_FOR_DAY_FORECAST options:0 context:NULL];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -58,8 +42,8 @@
 
 - (void)updateUI
 {
-    self.wind.speed = [self.forecasts.dayForecast valueForKeyPath:KEY_FOR_WIND_SPEED];
     self.wind.direction = [OpenWeatherFetcherHelper cardinalDirectionForDegrees:[self.forecasts.dayForecast valueForKeyPath:KEY_FOR_WIND_DIRECTION]];
+    self.wind.speed = [self.forecasts.dayForecast valueForKeyPath:KEY_FOR_WIND_SPEED];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     NSString *dateFormat = [NSDateFormatter dateFormatFromTemplate:@"EEEE, dd MMMM" options:0 locale:[NSLocale currentLocale]];
