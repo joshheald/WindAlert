@@ -55,17 +55,19 @@
         [dayForecasts addObject:forecast];
     }
     self.dayForecasts = dayForecasts;
+    
+    [self prepareForUpdate];
 }
 
-- (IBAction)refreshForecasts:(id)sender {
-    [self updateDayForecasts];
-}
-
-- (void)updateDayForecasts
+- (void)prepareForUpdate
 {
     [self.refreshControl beginRefreshing];
     //Clear out completedRefreshing - refreshing will end when all forecasts are added to completedRefreshing
     self.completedRefreshing = [[NSArray alloc] init];
+}
+
+- (IBAction)refreshForecasts:(id)sender {
+    [self prepareForUpdate];
     for (DayForecasts *dayForecasts in self.dayForecasts) {
         [dayForecasts refreshData];
     }
@@ -74,10 +76,16 @@
 - (void)setCompletedRefreshing:(NSArray *)completedRefreshing
 {
     _completedRefreshing = completedRefreshing;
-    [self addObserver:self forKeyPath:@"completedRefreshing" options:0 context:NULL];
+    //[self addObserver:self forKeyPath:@"completedRefreshing" options:0 context:NULL];
+    NSSet *allForecasts = [NSSet setWithArray:self.dayForecasts];
+    NSSet *refreshedForecasts = [NSSet setWithArray:self.completedRefreshing];
+    
+    if ([refreshedForecasts isEqualToSet:allForecasts]) {
+        [self.refreshControl endRefreshing];
+    }
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+/*- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if ([keyPath isEqualToString:@"completedRefreshing"]) {
         NSSet *allForecasts = [NSSet setWithArray:self.dayForecasts];
@@ -87,7 +95,7 @@
             [self.refreshControl endRefreshing];
         }
     }
-}
+}*/
 
 - (void)dayForecastsDidFinishUpdating:(DayForecasts *)dayForecasts
 {
