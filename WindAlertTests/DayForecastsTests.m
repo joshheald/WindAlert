@@ -32,7 +32,7 @@
     NSNumber *cityID = @2643743;
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:1395316800];
     
-    DayForecasts *result = [DayForecasts dayForecastsWithCityID:cityID forDate:date];
+    DayForecasts *result = [DayForecasts dayForecastsWithCityID:cityID forDate:date notifyDelegateOfUpdates:nil];
     
     XCTAssertEqual(cityID, result.cityID, @"The forecast should have the city ID passed");
     XCTAssertEqual(date, result.forecastDate, @"The forecast should have the date passed");
