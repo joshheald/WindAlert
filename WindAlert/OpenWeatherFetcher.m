@@ -15,29 +15,33 @@
 + (void)citiesForSearchString:(NSString *)searchString
         withCompletionHandler:(void (^)(NSArray *cities))completionHandler
 {
-    NSURL *url = [OpenWeatherFetcherURLs urlForCitySearchWithName:searchString];
-    
-    dispatch_queue_t searchQueue = dispatch_queue_create("city search", NULL);
-    dispatch_async(searchQueue, ^{
-        NSData *response = [NSData dataWithContentsOfURL:url];
-        NSArray *cities = [OpenWeatherFetcherHelper citiesFromCitySearchData:response];
-        NSLog(@"Cities found: %@", cities);
-        completionHandler(cities);
-    });
+    NSURLSession *session = [NSURLSession sharedSession];
+    [[session dataTaskWithURL:[OpenWeatherFetcherURLs urlForCitySearchWithName:searchString]
+            completionHandler:^(NSData *data,
+                                NSURLResponse *response,
+                                NSError *error) {
+                NSArray *cities = [OpenWeatherFetcherHelper citiesFromCitySearchData:data];
+                NSLog(@"Cities found: %@", cities);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    completionHandler(cities);
+                });
+            }] resume];
 }
 
 + (void)currentWindDataForCityWithID:(NSNumber *)cityID
                withCompletionHandler:(void (^)(NSDictionary *currentWeather))completionHandler
 {
-    NSURL *url = [OpenWeatherFetcherURLs urlForCurrentWeatherInCityWithID:cityID];
-    
-    dispatch_queue_t searchQueue = dispatch_queue_create("current weather", NULL);
-    dispatch_async(searchQueue, ^{
-        NSData *response = [NSData dataWithContentsOfURL:url];
-        NSDictionary *currentWeather = [OpenWeatherFetcherHelper currentWindFromWeatherData:response];
-        NSLog(@"Current weather: %@", currentWeather);
-        completionHandler(currentWeather);
-    });
+    NSURLSession *session = [NSURLSession sharedSession];
+    [[session dataTaskWithURL:[OpenWeatherFetcherURLs urlForCurrentWeatherInCityWithID:cityID]
+            completionHandler:^(NSData *data,
+                                NSURLResponse *response,
+                                NSError *error) {
+                NSDictionary *currentWeather = [OpenWeatherFetcherHelper currentWindFromWeatherData:data];
+                NSLog(@"Current weather: %@", currentWeather);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    completionHandler(currentWeather);
+                });
+            }] resume];
 }
 
 + (void)dailyForecastWindDataForCityWithID:(NSNumber *)cityID
@@ -46,15 +50,17 @@
 {
     if (cityID && date) {
         //could check whether to request fewer days here.
-        NSURL *url = [OpenWeatherFetcherURLs urlForDailyWeatherInCityWithID:cityID forNumberOfDays:MAX_DAILY_FORECAST_DAYS];
-        
-        dispatch_queue_t forecastQueue = dispatch_queue_create("daily forecasts", NULL);
-        dispatch_async(forecastQueue, ^{
-            NSData *response = [NSData dataWithContentsOfURL:url];
-            NSDictionary *dailyWeather = [OpenWeatherFetcherHelper dailyForecastWindFromWeatherData:response forDate:date];
-            NSLog(@"Daily weather forecast for %@: %@", date, dailyWeather);
-            completionHandler(dailyWeather);
-        });
+        NSURLSession *session = [NSURLSession sharedSession];
+        [[session dataTaskWithURL:[OpenWeatherFetcherURLs urlForDailyWeatherInCityWithID:cityID forNumberOfDays:MAX_DAILY_FORECAST_DAYS]
+                completionHandler:^(NSData *data,
+                                    NSURLResponse *response,
+                                    NSError *error) {
+                    NSDictionary *dailyWeather = [OpenWeatherFetcherHelper dailyForecastWindFromWeatherData:data forDate:date];
+                    NSLog(@"Daily weather forecast for %@: %@", date, dailyWeather);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completionHandler(dailyWeather);
+                    });
+                }] resume];
     }
 }
 
@@ -63,15 +69,17 @@
                            withCompletionHandler:(void (^)(NSArray *threeHourlyForecasts))completionHandler
 {
     if (cityID && date) {
-        NSURL *url = [OpenWeatherFetcherURLs urlFor3HourlyWeatherInCityWithID:cityID];
-        
-        dispatch_queue_t forecastQueue = dispatch_queue_create("3 hourly forecasts", NULL);
-        dispatch_async(forecastQueue, ^{
-            NSData *response = [NSData dataWithContentsOfURL:url];
-            NSArray *threeHourlyWeather = [OpenWeatherFetcherHelper threeHourlyForecastWindFromWeatherData:response forDate:date];
-            NSLog(@"3 hourly forecasts for %@: %@", date, threeHourlyWeather);
-            completionHandler(threeHourlyWeather);
-        });
+        NSURLSession *session = [NSURLSession sharedSession];
+        [[session dataTaskWithURL:[OpenWeatherFetcherURLs urlFor3HourlyWeatherInCityWithID:cityID]
+                completionHandler:^(NSData *data,
+                                    NSURLResponse *response,
+                                    NSError *error) {
+                    NSArray *threeHourlyWeather = [OpenWeatherFetcherHelper threeHourlyForecastWindFromWeatherData:data forDate:date];
+                    NSLog(@"3 hourly forecasts for %@: %@", date, threeHourlyWeather);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completionHandler(threeHourlyWeather);
+                    });
+                }] resume];
     }
 }
 
