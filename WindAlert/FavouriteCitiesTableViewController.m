@@ -48,13 +48,19 @@
         City *newCity = [City cityWithCityDictionary:city];
         [cities addObject:newCity];
         self.favouriteCities = cities;
-        [self.tableView reloadData];
     }
 }
 
 #define KEY_FOR_CURRENT_WEATHER @"currentWeather"
 - (void)setFavouriteCities:(NSArray *)favouriteCities
 {
+    @try {
+        [_favouriteCities removeObserver:self
+                        fromObjectsAtIndexes:[self indexSetForAllFavouriteCities]
+                                  forKeyPath:KEY_FOR_CURRENT_WEATHER];
+    }
+    @catch (NSException * __unused exception) {}
+    
     _favouriteCities = favouriteCities;
     [self saveCitiesToDefaults:favouriteCities];
     
@@ -154,8 +160,7 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     
-    @try
-    {
+    @try {
         [self.favouriteCities removeObserver:self
                            fromObjectsAtIndexes:[self indexSetForAllFavouriteCities]
                                      forKeyPath:KEY_FOR_CURRENT_WEATHER];
