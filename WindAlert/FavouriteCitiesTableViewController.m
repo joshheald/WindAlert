@@ -13,9 +13,10 @@
 #import "ForecastsForCityTableViewController.h"
 #import "CityCurrentWeatherTableViewCell.h"
 
-@interface FavouriteCitiesTableViewController ()
+@interface FavouriteCitiesTableViewController () <CityDelegate>
 
-@property (strong, nonatomic) NSArray* favouriteCities;
+@property (strong, nonatomic) NSArray* favouriteCities; //of City
+@property (strong, nonatomic) NSArray* completedRefreshing; //of City
 
 @end
 
@@ -31,6 +32,8 @@
     [self loadCitiesFromDefaults];
 }
 
+
+#pragma mark - Setting up data source
 - (void)loadCitiesFromDefaults
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -45,7 +48,7 @@
 {
     if (![self.favouriteCities containsObject:city]) {
         NSMutableArray *cities = [[NSArray arrayWithArray:self.favouriteCities] mutableCopy];
-        City *newCity = [City cityWithCityDictionary:city];
+        City *newCity = [City cityWithCityDictionary:city notifyDelegateOfUpdates:self];
         [cities addObject:newCity];
         self.favouriteCities = cities;
         
@@ -97,6 +100,40 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:dictionaryArray forKey:FAVOURITE_CITIES_USER_DEFAULTS_KEY];
     [defaults synchronize];
+}
+
+#pragma mark - Refreshing current wind conditions
+- (void)prepareForUpdate
+{
+    [self.refreshControl beginRefreshing];
+    //Clear out completedRefreshing - refreshing will end when all cities are added to completedRefreshing
+    self.completedRefreshing = [[NSArray alloc] init];
+}
+
+- (IBAction)refreshCurrentWeather:(id)sender {
+    [self prepareForUpdate];
+    for (City *city in self.favouriteCities) {
+        [city refreshData];
+    }
+}
+
+- (void)currentWeatherDidFinishUpdatingForCity:(City *)city
+{
+    NSMutableArray *completedRefreshing = [self.completedRefreshing mutableCopy];
+    [completedRefreshing addObject:city];
+    self.completedRefreshing = completedRefreshing;
+}
+
+- (void)setCompletedRefreshing:(NSArray *)completedRefreshing
+{
+    _completedRefreshing = completedRefreshing;
+    
+    NSSet *allForecasts = [NSSet setWithArray:self.favouriteCities];
+    NSSet *refreshedForecasts = [NSSet setWithArray:self.completedRefreshing];
+    
+    if ([refreshedForecasts isEqualToSet:allForecasts]) {
+        [self.refreshControl endRefreshing];
+    }
 }
 
 #pragma mark - Table view data source

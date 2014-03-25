@@ -7,6 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+@class City;
+
+@protocol CityDelegate
+
+- (void)currentWeatherDidFinishUpdatingForCity:(City *)city;
+
+@end
 
 @interface City : NSObject
 
@@ -16,6 +23,9 @@
 
 @property (readonly, nonatomic) NSDictionary *currentWeather;
 
-+ (City *)cityWithCityDictionary:(NSDictionary *)cityDictionary;
++ (City *)cityWithCityDictionary:(NSDictionary *)cityDictionary notifyDelegateOfUpdates:(id<CityDelegate>) delegate;
+
 - (NSDictionary *)createCityDictionary;
+- (void)refreshData;
+
 @end

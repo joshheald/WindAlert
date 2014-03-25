@@ -15,18 +15,21 @@
 @property (strong, readwrite, nonatomic) NSString *country;
 @property (strong, readwrite, nonatomic) NSNumber *cityID;
 @property (strong, readwrite, nonatomic) NSDictionary *currentWeather;
+@property (weak, nonatomic) id<CityDelegate> delegate;
 
 @end
 
 @implementation City
 
-+ (City *)cityWithCityDictionary:(NSDictionary *)cityDictionary
++ (City *)cityWithCityDictionary:(NSDictionary *)cityDictionary notifyDelegateOfUpdates:(id<CityDelegate>)delegate
 {
     City *city;
     
     if (cityDictionary) {
         city = [[City alloc] initWithCityDictionary:cityDictionary];
     }
+    
+    city.delegate = delegate;
     
     return city;
 }
@@ -51,12 +54,18 @@
              KEY_FOR_COUNTRY_NAME: self.country};
 }
 
+- (void)refreshData
+{
+    [self updateCurrentWeather];
+}
+
 - (void)updateCurrentWeather
 {
     __weak City *weakSelf = self;
     [OpenWeatherFetcher currentWindDataForCityWithID:self.cityID withCompletionHandler:^(NSDictionary *currentWeather) {
         dispatch_async(dispatch_get_main_queue(), ^{
             weakSelf.currentWeather = currentWeather;
+            [weakSelf.delegate currentWeatherDidFinishUpdatingForCity:weakSelf];
         });
     }];
 }

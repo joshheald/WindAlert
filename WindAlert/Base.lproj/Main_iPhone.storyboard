@@ -80,6 +80,12 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="b2e-bv-pBd">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <action selector="refreshCurrentWeather:" destination="HCh-xT-b2y" eventType="valueChanged" id="DGb-qW-DJi"/>
+                        </connections>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8NM-cu-6uo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
