@@ -95,7 +95,8 @@
 
 - (void)resetErrorForSearchBar:(UISearchBar *)searchBar
 {
-    if ([searchBar.text length] >= MINIMUM_API_SEARCH_STRING_LENGTH)
+    if ([searchBar.text length] >= MINIMUM_API_SEARCH_STRING_LENGTH ||
+        [searchBar.text length] == 0)
     {
         if ([searchBar respondsToSelector:@selector(barTintColor)]) {
             searchBar.barTintColor = nil;
