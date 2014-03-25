@@ -58,12 +58,11 @@
 #define KEY_FOR_CURRENT_WEATHER @"currentWeather"
 - (void)setFavouriteCities:(NSArray *)favouriteCities
 {
-    @try {
-        [_favouriteCities removeObserver:self
+    if (self.favouriteCities) {
+        [self.favouriteCities removeObserver:self
                         fromObjectsAtIndexes:[self indexSetForAllFavouriteCities]
                                   forKeyPath:KEY_FOR_CURRENT_WEATHER];
     }
-    @catch (NSException * __unused exception) {}
     
     _favouriteCities = favouriteCities;
     [self saveCitiesToDefaults:favouriteCities];
@@ -163,15 +162,13 @@
     //this is an unwind segue
 }
 
-- (void)viewDidDisappear:(BOOL)animated
+- (void)dealloc
 {
-    
-    @try {
+    if (self.favouriteCities) {
         [self.favouriteCities removeObserver:self
-                           fromObjectsAtIndexes:[self indexSetForAllFavouriteCities]
-                                     forKeyPath:KEY_FOR_CURRENT_WEATHER];
+                        fromObjectsAtIndexes:[self indexSetForAllFavouriteCities]
+                                  forKeyPath:KEY_FOR_CURRENT_WEATHER];
     }
-    @catch (NSException * __unused exception) {}
 }
 
 @end
