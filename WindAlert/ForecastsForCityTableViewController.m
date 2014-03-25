@@ -109,8 +109,8 @@
     ForecastsForDayTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Forecast Day Cell" forIndexPath:indexPath];
     
     [cell resetForecasts];
-    
     cell.forecasts = self.dayForecasts[indexPath.row];
+    
     if ([indexPath compare:self.indexPathOfPreviousSelection] == NSOrderedSame)
     {
         [cell showHourlyForecasts:YES];

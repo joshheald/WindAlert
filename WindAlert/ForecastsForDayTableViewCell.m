@@ -68,13 +68,14 @@
 {
     if ([self.forecasts.threeHourlyForecasts count] > 0) {
         if (show) {
+            NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
+            [timeFormatter setTimeStyle:NSDateFormatterShortStyle];
+            
             for (NSInteger i = 0; i < [self.forecasts.threeHourlyForecasts count]; i++) {
                 //Add an HourlyWindView to the contentView and the collection
                 CGRect frame = CGRectMake(i * 37 + 3, 0, 36, 61);
                 HourlyWindView *newView = [[HourlyWindView alloc] initWithFrame:frame];
                 
-                NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
-                [timeFormatter setTimeStyle:NSDateFormatterShortStyle];
                 NSDictionary *forecast = self.forecasts.threeHourlyForecasts[i];
                     
                 NSDate *forecastDate = [forecast valueForKeyPath:@"datetime"];
@@ -99,7 +100,6 @@
 
 - (void)resetForecasts
 {
-    self.dateLabel.text = nil;
     [self.wind reset];
     [self showHourlyForecasts:NO];
 }

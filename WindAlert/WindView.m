@@ -31,8 +31,6 @@
     
     [[NSBundle mainBundle] loadNibNamed:nibName owner:self options:nil];
     [self addSubview: self.contentView];
-    
-    //[self.directionImageView setTranslatesAutoresizingMaskIntoConstraints:YES];
 }
 
 - (BOOL)isUsingSmallView
@@ -44,11 +42,11 @@
 - (void)setImages
 {
     if ([self isUsingSmallView]) {
-        self.unknownImage = [UIImage imageNamed:@"WindDirectionSpeedUnknownSmall"];
-        self.directionImage = [UIImage imageNamed:@"WindDirectionSpeedSmall"];
+        self.unknownImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"WindDirectionSpeedUnknownSmall" ofType:@"png"]];
+        self.directionImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"WindDirectionSpeedSmall" ofType:@"png"]];
     } else {
-        self.unknownImage = [UIImage imageNamed:@"WindDirectionSpeedUnknown"];
-        self.directionImage = [UIImage imageNamed:@"WindDirectionSpeed"];
+        self.unknownImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"WindDirectionSpeedUnknown" ofType:@"png"]];
+        self.directionImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"WindDirectionSpeed" ofType:@"png"]];
     }
 }
 
@@ -80,7 +78,6 @@
 {
     self.direction = CardinalDirectionNorth;
     self.speed = nil;
-    self.directionImageView.image = self.unknownImage;
 }
 
 @end

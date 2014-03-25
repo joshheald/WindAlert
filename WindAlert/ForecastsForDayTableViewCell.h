@@ -15,6 +15,6 @@
 @property (strong, nonatomic) DayForecasts *forecasts;
 
 - (void)resetForecasts;
-
 - (void)showHourlyForecasts:(BOOL)show;
+
 @end
