@@ -48,6 +48,10 @@
         City *newCity = [City cityWithCityDictionary:city];
         [cities addObject:newCity];
         self.favouriteCities = cities;
+        
+        [self.tableView beginUpdates];
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.tableView endUpdates];
     }
 }
 
@@ -81,7 +85,9 @@
 {
     if ([keyPath isEqualToString:KEY_FOR_CURRENT_WEATHER]) {
         //object contains the city we need to reload
-        [self.tableView reloadData];
+        [self.tableView beginUpdates];
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+        [self.tableView endUpdates];
     }
 }
 
