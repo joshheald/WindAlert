@@ -32,7 +32,7 @@
     [[NSBundle mainBundle] loadNibNamed:nibName owner:self options:nil];
     [self addSubview: self.contentView];
     
-    [self.directionImageView setTranslatesAutoresizingMaskIntoConstraints:YES];
+    //[self.directionImageView setTranslatesAutoresizingMaskIntoConstraints:YES];
 }
 
 - (BOOL)isUsingSmallView

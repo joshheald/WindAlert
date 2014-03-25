@@ -17,12 +17,12 @@
             <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="WindDirectionSpeedUnknownSmall.png" translatesAutoresizingMaskIntoConstraints="NO" id="N2L-LL-Zul">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WindDirectionSpeedUnknownSmall.png" translatesAutoresizingMaskIntoConstraints="NO" id="N2L-LL-Zul">
                     <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </imageView>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="?" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="zzK-8Y-gQO">
-                    <rect key="frame" x="13" y="7" width="10" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="?" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="zzK-8Y-gQO">
+                    <rect key="frame" x="14" y="10" width="8" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -30,6 +30,12 @@
                 </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="centerY" secondItem="N2L-LL-Zul" secondAttribute="centerY" id="2W2-Jb-Bmx"/>
+                <constraint firstAttribute="centerX" secondItem="N2L-LL-Zul" secondAttribute="centerX" id="jH9-UQ-TKf"/>
+                <constraint firstAttribute="centerY" secondItem="zzK-8Y-gQO" secondAttribute="centerY" id="jia-aC-AzD"/>
+                <constraint firstAttribute="centerX" secondItem="zzK-8Y-gQO" secondAttribute="centerX" id="xig-7e-dVU"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment defaultVersion="1552" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
@@ -16,19 +17,33 @@
             <rect key="frame" x="0.0" y="0.0" width="36" height="61"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mQR-Tk-dSO" customClass="WindView">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mQR-Tk-dSO" customClass="WindView">
                     <rect key="frame" x="0.0" y="20" width="36" height="36"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7C4-GZ-mPt">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7C4-GZ-mPt">
                     <rect key="frame" x="0.0" y="0.0" width="36" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="r3t-Ob-P3F"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="8"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="7C4-GZ-mPt" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="1sP-b5-L7k"/>
+                <constraint firstItem="mQR-Tk-dSO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="2in-R9-QnF"/>
+                <constraint firstAttribute="bottom" secondItem="mQR-Tk-dSO" secondAttribute="bottom" constant="5" id="4A9-ZH-LpS"/>
+                <constraint firstAttribute="trailing" secondItem="mQR-Tk-dSO" secondAttribute="trailing" id="MhH-ZM-Bg3"/>
+                <constraint firstAttribute="trailing" secondItem="7C4-GZ-mPt" secondAttribute="trailing" id="OzY-71-94Y"/>
+                <constraint firstAttribute="centerX" secondItem="7C4-GZ-mPt" secondAttribute="centerX" id="VCu-pg-bsN"/>
+                <constraint firstItem="mQR-Tk-dSO" firstAttribute="top" secondItem="7C4-GZ-mPt" secondAttribute="bottom" constant="-1" id="Ycj-3C-8tn"/>
+                <constraint firstItem="7C4-GZ-mPt" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="jg0-w5-ma8"/>
+                <constraint firstAttribute="centerX" secondItem="mQR-Tk-dSO" secondAttribute="centerX" id="uho-2R-zs5"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
