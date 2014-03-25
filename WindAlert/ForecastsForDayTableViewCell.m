@@ -25,7 +25,8 @@
 #define KEY_FOR_DAY_FORECAST @"dayForecast"
 - (void)setForecasts:(DayForecasts *)dayForecasts
 {
-    [_forecasts removeObserver:self forKeyPath:KEY_FOR_DAY_FORECAST];
+    @try { [_forecasts removeObserver:self forKeyPath:KEY_FOR_DAY_FORECAST]; }
+    @catch (NSException * __unused exception) {}
     
     _forecasts = dayForecasts;
     [self updateUI];

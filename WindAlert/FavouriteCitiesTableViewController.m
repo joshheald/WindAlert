@@ -153,7 +153,14 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [self.favouriteCities removeObserver:self fromObjectsAtIndexes:[self indexSetForAllFavouriteCities] forKeyPath:KEY_FOR_CURRENT_WEATHER];
+    
+    @try
+    {
+        [self.favouriteCities removeObserver:self
+                           fromObjectsAtIndexes:[self indexSetForAllFavouriteCities]
+                                     forKeyPath:KEY_FOR_CURRENT_WEATHER];
+    }
+    @catch (NSException * __unused exception) {}
 }
 
 @end

@@ -69,7 +69,7 @@
         [self setHidden:!speed];
     }
     if (speed) {
-        self.speedLabel.text = [NSString stringWithFormat:@"%i", [speed integerValue]];
+        self.speedLabel.text = [NSNumberFormatter localizedStringFromNumber:speed numberStyle:NSNumberFormatterNoStyle];
     } else {
         self.speedLabel.text = @"?";
         self.directionImageView.image = self.unknownImage;
