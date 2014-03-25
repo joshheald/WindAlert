@@ -14,6 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) NSArray *searchResults;
+@property (strong, nonatomic) UIActivityIndicatorView *spinner;
 
 @end
 
@@ -36,6 +37,11 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    
+    self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.spinner];
+    [self.spinner setHidesWhenStopped:YES];
+    
     self.searchBar.delegate = self;
     if (![self.searchBar respondsToSelector:@selector(barTintColor)]) {
         self.searchBar.tintColor = self.navigationController.navigationBar.tintColor;
@@ -59,11 +65,13 @@
 - (void)performSearchAndUpdateTableViewWithSearchString:(NSString *)searchString
 {
     if ([searchString length] >= MINIMUM_API_SEARCH_STRING_LENGTH) {
+        [self.spinner startAnimating];
         __weak CitySearchTableViewController *weakSelf = self;
         [OpenWeatherFetcher citiesForSearchString:searchString
                             withCompletionHandler:^(NSArray *cities) {
                                 dispatch_async(dispatch_get_main_queue(), ^{
                                     weakSelf.searchResults = cities;
+                                    [weakSelf.spinner stopAnimating];
                                 });
                             }];
     }
