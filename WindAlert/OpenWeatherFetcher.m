@@ -21,7 +21,7 @@
                                 NSURLResponse *response,
                                 NSError *error) {
                 NSArray *cities = [OpenWeatherFetcherHelper citiesFromCitySearchData:data];
-                NSLog(@"Cities found: %@", cities);
+                //NSLog(@"Cities found: %@", cities);
                 dispatch_async(dispatch_get_main_queue(), ^{
                     completionHandler(cities);
                 });
@@ -37,7 +37,7 @@
                                 NSURLResponse *response,
                                 NSError *error) {
                 NSDictionary *currentWeather = [OpenWeatherFetcherHelper currentWindFromWeatherData:data];
-                NSLog(@"Current weather: %@", currentWeather);
+                //NSLog(@"Current weather: %@", currentWeather);
                 dispatch_async(dispatch_get_main_queue(), ^{
                     completionHandler(currentWeather);
                 });
@@ -56,7 +56,7 @@
                                     NSURLResponse *response,
                                     NSError *error) {
                     NSDictionary *dailyWeather = [OpenWeatherFetcherHelper dailyForecastWindFromWeatherData:data forDate:date];
-                    NSLog(@"Daily weather forecast for %@: %@", date, dailyWeather);
+                    //NSLog(@"Daily weather forecast for %@: %@", date, dailyWeather);
                     dispatch_async(dispatch_get_main_queue(), ^{
                         completionHandler(dailyWeather);
                     });
@@ -75,7 +75,7 @@
                                     NSURLResponse *response,
                                     NSError *error) {
                     NSArray *threeHourlyWeather = [OpenWeatherFetcherHelper threeHourlyForecastWindFromWeatherData:data forDate:date];
-                    NSLog(@"3 hourly forecasts for %@: %@", date, threeHourlyWeather);
+                    //NSLog(@"3 hourly forecasts for %@: %@", date, threeHourlyWeather);
                     dispatch_async(dispatch_get_main_queue(), ^{
                         completionHandler(threeHourlyWeather);
                     });

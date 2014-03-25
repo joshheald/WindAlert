@@ -25,27 +25,38 @@
 #define KEY_FOR_DAY_FORECAST @"dayForecast"
 - (void)setForecasts:(DayForecasts *)dayForecasts
 {
-    @try { [_forecasts removeObserver:self forKeyPath:KEY_FOR_DAY_FORECAST]; }
-    @catch (NSException * __unused exception) {}
+    if (_forecasts) {
+        [self.forecasts removeObserver:self forKeyPath:KEY_FOR_DAY_FORECAST];
+    }
     
     _forecasts = dayForecasts;
-    [self updateUI];
-    
     [self.forecasts addObserver:self forKeyPath:KEY_FOR_DAY_FORECAST options:0 context:NULL];
+    
+    //update here as the observer is only used to detect changes to the forecast data held within dayForecasts, which will only change when data has been fetched, i.e. on load and user refresh.
+    [self updateCell];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if ([keyPath isEqualToString:KEY_FOR_DAY_FORECAST]) {
-        [self updateUI];
+        [self updateForecasts];
     }
 }
 
-- (void)updateUI
+- (void)updateCell
+{
+    [self updateForecasts];
+    [self updateDateLabel];
+}
+
+- (void)updateForecasts
 {
     self.wind.direction = [OpenWeatherFetcherHelper cardinalDirectionForDegrees:[self.forecasts.dayForecast valueForKeyPath:KEY_FOR_WIND_DIRECTION]];
     self.wind.speed = [self.forecasts.dayForecast valueForKeyPath:KEY_FOR_WIND_SPEED];
-    
+}
+
+- (void)updateDateLabel
+{
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     NSString *dateFormat = [NSDateFormatter dateFormatFromTemplate:@"EEEE, dd MMMM" options:0 locale:[NSLocale currentLocale]];
     [dateFormatter setDateFormat:dateFormat];
@@ -91,6 +102,13 @@
     self.dateLabel.text = nil;
     [self.wind reset];
     [self showHourlyForecasts:NO];
+}
+
+- (void)dealloc
+{
+    if (self.forecasts) {
+        [self.forecasts removeObserver:self forKeyPath:KEY_FOR_DAY_FORECAST];
+    }
 }
 
 @end
