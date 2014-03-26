@@ -106,13 +106,15 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ForecastsForDayTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Forecast Day Cell" forIndexPath:indexPath];
+    BOOL isSelectedCell = ([indexPath compare:self.indexPathOfPreviousSelection] == NSOrderedSame);
+    NSString *cellIdentifier = isSelectedCell ? @"Forecast Day Cell Expanded" : @"Forecast Day Cell";
+    
+    ForecastsForDayTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     
     [cell resetForecasts];
     cell.forecasts = self.dayForecasts[indexPath.row];
     
-    if ([indexPath compare:self.indexPathOfPreviousSelection] == NSOrderedSame)
-    {
+    if ([indexPath compare:self.indexPathOfPreviousSelection] == NSOrderedSame) {
         [cell showHourlyForecasts:YES];
     }
     

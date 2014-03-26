@@ -100,7 +100,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Forecast Day Cell" rowHeight="112" id="wJr-DL-dN3" customClass="ForecastsForDayTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Forecast Day Cell Expanded" rowHeight="112" id="wJr-DL-dN3" customClass="ForecastsForDayTableViewCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="112"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wJr-DL-dN3" id="Uyq-Ld-1zY">
@@ -126,6 +126,48 @@
                                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z0z-e6-Eh0">
                                             <rect key="frame" x="6" y="55" width="308" height="56"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3f5-jt-LT8" customClass="HourlyWindView">
+                                                    <rect key="frame" x="7" y="0.0" width="36" height="56"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                </view>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ciO-nb-MA4" customClass="HourlyWindView">
+                                                    <rect key="frame" x="44" y="0.0" width="36" height="56"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                </view>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HPD-KO-MN5" customClass="HourlyWindView">
+                                                    <rect key="frame" x="81" y="0.0" width="36" height="56"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                </view>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bv2-1Q-ah9" customClass="HourlyWindView">
+                                                    <rect key="frame" x="118" y="0.0" width="36" height="56"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                </view>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ifX-bp-XPi" customClass="HourlyWindView">
+                                                    <rect key="frame" x="155" y="0.0" width="36" height="56"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                </view>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xo8-Sy-fn2" customClass="HourlyWindView">
+                                                    <rect key="frame" x="192" y="0.0" width="36" height="56"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                </view>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gzd-dK-FAI" customClass="HourlyWindView">
+                                                    <rect key="frame" x="229" y="0.0" width="36" height="56"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                </view>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="thv-hG-DwA" customClass="HourlyWindView">
+                                                    <rect key="frame" x="266" y="0.0" width="36" height="56"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                </view>
+                                            </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="56" id="Gf7-Pw-qRa"/>
@@ -157,6 +199,51 @@
                                     <outlet property="extendedCellView" destination="z0z-e6-Eh0" id="JbS-QQ-RIY"/>
                                     <outlet property="noForecastsLabel" destination="Zfy-SA-TUO" id="ih8-zG-czo"/>
                                     <outlet property="wind" destination="Rbd-oY-Pdx" id="QbN-g1-0cc"/>
+                                    <outletCollection property="hourlyWindViews" destination="3f5-jt-LT8" id="U5a-nq-Lv8"/>
+                                    <outletCollection property="hourlyWindViews" destination="ciO-nb-MA4" id="7rQ-VI-GMY"/>
+                                    <outletCollection property="hourlyWindViews" destination="HPD-KO-MN5" id="pxl-5H-QgI"/>
+                                    <outletCollection property="hourlyWindViews" destination="bv2-1Q-ah9" id="93Q-di-ufA"/>
+                                    <outletCollection property="hourlyWindViews" destination="ifX-bp-XPi" id="vlT-sE-cEm"/>
+                                    <outletCollection property="hourlyWindViews" destination="xo8-Sy-fn2" id="Kst-ev-ZUb"/>
+                                    <outletCollection property="hourlyWindViews" destination="gzd-dK-FAI" id="Z1z-w0-mHr"/>
+                                    <outletCollection property="hourlyWindViews" destination="thv-hG-DwA" id="wuK-f0-I2c"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Forecast Day Cell" rowHeight="51" id="IyN-K6-Bee" customClass="ForecastsForDayTableViewCell">
+                                <rect key="frame" x="0.0" y="198" width="320" height="51"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IyN-K6-Bee" id="X4B-Eq-0nc">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gei-ia-19f" customClass="WindView">
+                                            <rect key="frame" x="4" y="2" width="45" height="45"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="gei-ia-19f" secondAttribute="height" multiplier="1:1" id="7pg-Qa-ZIC"/>
+                                                <constraint firstAttribute="height" constant="45" id="fpV-fv-oQo"/>
+                                            </constraints>
+                                        </view>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="siH-Wh-4nM">
+                                            <rect key="frame" x="57" y="14" width="243" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="siH-Wh-4nM" firstAttribute="centerY" secondItem="gei-ia-19f" secondAttribute="centerY" id="1lF-vm-zmF"/>
+                                        <constraint firstItem="siH-Wh-4nM" firstAttribute="leading" secondItem="gei-ia-19f" secondAttribute="trailing" constant="8" symbolic="YES" id="Jkb-cA-0Or"/>
+                                        <constraint firstItem="gei-ia-19f" firstAttribute="leading" secondItem="X4B-Eq-0nc" secondAttribute="leading" constant="4" id="LWO-1n-nWB"/>
+                                        <constraint firstAttribute="trailing" secondItem="siH-Wh-4nM" secondAttribute="trailing" constant="20" symbolic="YES" id="c84-FW-yTe"/>
+                                        <constraint firstItem="gei-ia-19f" firstAttribute="top" secondItem="X4B-Eq-0nc" secondAttribute="top" constant="2" id="gf3-Oo-d4y"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="dateLabel" destination="siH-Wh-4nM" id="Obe-aH-Fp7"/>
+                                    <outlet property="wind" destination="gei-ia-19f" id="ZU3-Dr-ZYI"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
