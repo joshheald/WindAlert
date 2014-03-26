@@ -42,7 +42,7 @@
     NSURL *dailyForecastURL;
     
     if (cityID && (days >= 1 && days <= 14)) {
-        dailyForecastURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/forecast/daily?id=%@&cnt=%i&mode=%@", OPENWEATHER_API_ADDRESS, cityID, days, OPENWEATHER_API_MODE]];
+        dailyForecastURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/forecast/daily?id=%@&cnt=%li&mode=%@", OPENWEATHER_API_ADDRESS, cityID, (long)days, OPENWEATHER_API_MODE]];
     }
     
     return dailyForecastURL;
