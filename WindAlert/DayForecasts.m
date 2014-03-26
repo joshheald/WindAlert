@@ -84,16 +84,17 @@
                                                                                                         NSYearCalendarUnit)
                                                                                               fromDate:self.forecastDate];
                                                    
-                                                   [components setHour:0];
+                                                   [components setHour:2];
                                                    [components setMinute:0];
                                                    [components setSecond:0];
                                                    
-                                                   NSDate *midnight = [calendar dateFromComponents: components];
+                                                   NSDate *twoAM = [calendar dateFromComponents: components];
                                                    
                                                    NSMutableArray *threeHourlyForecastsForAllDay = [threeHourlyForecasts mutableCopy];
                                                    //add 8 - numberOfForecasts to the array
                                                    NSInteger indexToAddAt;
-                                                   if ([forecastTime compare:midnight] == NSOrderedDescending) {
+                                                   //First forecast is midnight, except on clock changes. Comparing to 2 am gets around the ordering issue at DST change time, a comparison to midnight leads to the first forecast on the Monday being at the end of the array, and all the others to be lost.
+                                                   if ([forecastTime compare:twoAM] != NSOrderedAscending) {
                                                        //add to the start
                                                        indexToAddAt = 0;
                                                    } else {
