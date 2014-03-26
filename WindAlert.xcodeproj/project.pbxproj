@@ -25,7 +25,6 @@
 		03B62FD118DAD8C50032590F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03B62FAD18DAD8C50032590F /* Foundation.framework */; };
 		03B62FD218DAD8C50032590F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03B62FB118DAD8C50032590F /* UIKit.framework */; };
 		03B62FDA18DAD8C50032590F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 03B62FD818DAD8C50032590F /* InfoPlist.strings */; };
-		03B62FDC18DAD8C50032590F /* WindAlertTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B62FDB18DAD8C50032590F /* WindAlertTests.m */; };
 		03B62FE718DADE010032590F /* OpenWeatherFetcherURLs.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B62FE618DADE010032590F /* OpenWeatherFetcherURLs.m */; };
 		03B62FE918DAE65D0032590F /* OpenWeatherFetcherURLsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B62FE818DAE65D0032590F /* OpenWeatherFetcherURLsTests.m */; };
 		03B62FF018DB007D0032590F /* OpenWeatherFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B62FEF18DB007D0032590F /* OpenWeatherFetcher.m */; };
@@ -90,7 +89,6 @@
 		03B62FCF18DAD8C50032590F /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		03B62FD718DAD8C50032590F /* WindAlertTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WindAlertTests-Info.plist"; sourceTree = "<group>"; };
 		03B62FD918DAD8C50032590F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		03B62FDB18DAD8C50032590F /* WindAlertTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WindAlertTests.m; sourceTree = "<group>"; };
 		03B62FE518DADE010032590F /* OpenWeatherFetcherURLs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenWeatherFetcherURLs.h; sourceTree = "<group>"; };
 		03B62FE618DADE010032590F /* OpenWeatherFetcherURLs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenWeatherFetcherURLs.m; sourceTree = "<group>"; };
 		03B62FE818DAE65D0032590F /* OpenWeatherFetcherURLsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenWeatherFetcherURLsTests.m; sourceTree = "<group>"; };
@@ -217,7 +215,6 @@
 		03B62FD518DAD8C50032590F /* WindAlertTests */ = {
 			isa = PBXGroup;
 			children = (
-				03B62FDB18DAD8C50032590F /* WindAlertTests.m */,
 				03B62FE818DAE65D0032590F /* OpenWeatherFetcherURLsTests.m */,
 				03B62FF418DB03460032590F /* OpenWeatherFetcherHelperTests.m */,
 				03B6301318DC86E00032590F /* CityTests.m */,
@@ -441,7 +438,6 @@
 				03B62FF518DB03460032590F /* OpenWeatherFetcherHelperTests.m in Sources */,
 				03B6301418DC86E00032590F /* CityTests.m in Sources */,
 				039A3FA518DD7B790075EFE1 /* DayForecastsTests.m in Sources */,
-				03B62FDC18DAD8C50032590F /* WindAlertTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
