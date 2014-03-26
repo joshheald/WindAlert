@@ -37,7 +37,7 @@
     
     NSMutableArray *dayForecasts = [[NSMutableArray alloc] initWithCapacity:[datesForForecasts count]];
     for (NSDate *date in datesForForecasts) {
-        DayForecasts *forecast = [DayForecasts dayForecastsWithCityID:[self.city valueForKey:@"cityID"] forDate:date notifyDelegateOfUpdates:self];
+        DayForecasts *forecast = [DayForecasts dayForecastsWithCityID:[self.city valueForKey:KEY_FOR_CITY_ID] forDate:date notifyDelegateOfUpdates:self];
         [dayForecasts addObject:forecast];
     }
     self.dayForecasts = dayForecasts;
@@ -86,7 +86,7 @@
 - (void)setCity:(NSDictionary *)city
 {
     _city = city;
-    self.title = [city valueForKey:@"name"];
+    self.title = [city valueForKey:KEY_FOR_CITY_NAME];
 }
 
 #pragma mark - Table view data source

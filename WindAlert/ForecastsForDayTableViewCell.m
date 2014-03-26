@@ -76,7 +76,7 @@
                 NSDictionary *forecast = self.forecasts.threeHourlyForecasts[i];
                 
                 HourlyWindView *forecastView = self.hourlyWindViews[i];
-                NSDate *forecastDate = [forecast valueForKeyPath:@"datetime"];
+                NSDate *forecastDate = [forecast valueForKeyPath:KEY_FOR_DATETIME];
                 forecastView.timeLabel.text = [timeFormatter stringFromDate:forecastDate];
                 
                 forecastView.windView.speed = [forecast valueForKeyPath:KEY_FOR_WIND_SPEED];

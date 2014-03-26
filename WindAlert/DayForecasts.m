@@ -76,7 +76,7 @@
                                                } else if ([threeHourlyForecasts count] > 0) {
                                                    // pad at the beginnning or end
                                                    // determine the time of the first available forecast
-                                                   NSDate *forecastTime = [[threeHourlyForecasts firstObject] valueForKeyPath:@"datetime"];
+                                                   NSDate *forecastTime = [[threeHourlyForecasts firstObject] valueForKeyPath:KEY_FOR_DATETIME];
                                                    
                                                    NSCalendar *calendar = [NSCalendar currentCalendar];
                                                    NSDateComponents *components = [calendar components:(NSDayCalendarUnit |

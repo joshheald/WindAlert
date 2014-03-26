@@ -7,6 +7,7 @@
 //
 
 #import "OpenWeatherFetcherHelper.h"
+#import "OpenWeatherFetcher.h"
 
 @interface OpenWeatherFetcherHelper ()
 
@@ -130,7 +131,7 @@
         windForecast = @{@"wind": [self dictionaryFromPropertyList:forecast
                                                          withKeys:@[@"direction", @"speed"]
                                               forValuesAtKeyPaths:@[directionKey, speedKey]],
-                        @"datetime": [NSDate dateWithTimeIntervalSince1970:timestamp]};
+                        KEY_FOR_DATETIME: [NSDate dateWithTimeIntervalSince1970:timestamp]};
     }
     
     return windForecast;

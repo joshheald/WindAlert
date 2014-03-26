@@ -33,7 +33,7 @@
                                      @"name": @"London",
                                      @"country": @"GB"};
     
-    City *result = [City cityWithCityDictionary:cityDictionary];
+    City *result = [City cityWithCityDictionary:cityDictionary notifyDelegateOfUpdates:nil];
     
     XCTAssertEqual([cityDictionary valueForKeyPath:@"cityID"], result.cityID, @"The city should have the ID passed in the dictionary");
     XCTAssertEqual([cityDictionary valueForKeyPath:@"name"], result.name, @"The city should have the name passed in the dictionary");
@@ -46,7 +46,7 @@
                                      @"name": @"London",
                                      @"country": @"GB"};
     
-    City *city = [City cityWithCityDictionary:cityDictionary];
+    City *city = [City cityWithCityDictionary:cityDictionary notifyDelegateOfUpdates:nil];
     
     NSDictionary *result = [city createCityDictionary];
     

@@ -95,7 +95,7 @@
 
 - (void)saveCitiesToDefaults:(NSArray *)cities
 {
-    NSArray *dictionaryArray = [cities valueForKey:@"createCityDictionary"];
+    NSArray *dictionaryArray = [cities valueForKey:NSStringFromSelector(@selector(createCityDictionary))];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:dictionaryArray forKey:FAVOURITE_CITIES_USER_DEFAULTS_KEY];

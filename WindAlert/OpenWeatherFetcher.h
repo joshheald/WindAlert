@@ -42,5 +42,7 @@
 #define KEY_FOR_WIND_SPEED @"wind.speed"
 #define KEY_FOR_WIND_DIRECTION @"wind.direction"
 
+#define KEY_FOR_DATETIME @"datetime"
+
 #define MAX_DAILY_FORECAST_DAYS 14
 @end
